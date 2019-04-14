@@ -1,10 +1,12 @@
 import * as React from "react";
 import {Input, InputTypes} from "../input";
 import {SyntheticEvent} from "react";
+import classnames from "classnames";
 
 
 interface IProps {
-    onSubmit: (value: string) => void
+    onSubmit: (value: string) => void,
+    className: string
 }
 
 interface IState {
@@ -25,6 +27,7 @@ export class SearchForm extends React.Component<IProps, IState>{
 
     render(){
         const { value } = this.state;
+        const classNames = classnames('search-form');
         return <form onSubmit={this.onSubmit}>
                 <Input
                     onChange = {this.onInputChange}

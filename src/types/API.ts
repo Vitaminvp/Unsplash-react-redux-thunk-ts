@@ -34,12 +34,6 @@ export interface Urls {
     thumb: string;
 }
 
-export interface Links2 {
-    self: string;
-    html: string;
-    download: string;
-}
-
 export interface Image {
     id: string;
     created_at: Date;
@@ -52,5 +46,11 @@ export interface Image {
     user: User;
     current_user_collections: any[];
     urls: Urls;
-    links: Links2;
+    links: Links;
+}
+
+export interface SearchResponse{
+    total: number;
+    total_pages: number;
+    results: Array<Image>
 }
