@@ -1,9 +1,7 @@
 import React from "react";
-//import {SyntheticEvent} from "react";
 import {Image} from '../../types/API';
-//import 'Nav.scss';
+import './Grid.scss';
 import {GridItem} from "../gridItem";
-import {Button} from "../button";
 
 
 interface Props {
@@ -22,8 +20,8 @@ export class Grid extends React.PureComponent<Props, State> {
         return <div className={'grid'}>
             {
                 items.map(item => {
-                    const {description, urls, likes, id} = item;
-                    return <GridItem className={'grid__item'} id={id} url={urls.small} description={description}
+                    const {description, urls, likes, id, height} = item;
+                    return <GridItem className={'grid__item'} key={id} id={id} url={urls.small} description={description}
                                      likes={likes}/>
                 })
             }

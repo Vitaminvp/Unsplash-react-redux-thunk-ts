@@ -12,6 +12,7 @@ interface IProps {
     type: InputTypes,
     value: string,
     onChange: (value: string) => void
+    name: string
 }
 
 interface IState {
@@ -24,9 +25,10 @@ export class Input extends React.Component<IProps, IState>{
         this.props.onChange(value);
     };
     render(){
-        const { value } = this.props;
+        const { value, name } = this.props;
         return <div className={'input'}>
             <input
+                name={name}
                 onChange = {this.onChange}
                 type={this.props.type}
                 className={'input__nativ-input'}
