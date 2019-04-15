@@ -1,9 +1,7 @@
 import React from "react";
-//import {SyntheticEvent} from "react";
 import {Image} from '../../types/API';
-//import 'Nav.scss';
+import './Grid.scss';
 import {GridItem} from "../gridItem";
-import {Button} from "../button";
 
 
 interface Props {
@@ -27,7 +25,6 @@ export class Grid extends React.PureComponent<Props, State> {
                                      likes={likes}/>
                 })
             }
-
         </div>
     }
 }

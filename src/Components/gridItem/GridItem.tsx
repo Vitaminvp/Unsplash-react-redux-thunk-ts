@@ -21,8 +21,16 @@ export class GridItem extends React.Component<IProps, IState>{
     render(){
         const { url, likes, link, description, className: classN } = this.props;
         return <div className={classN}>
-            <img src={url} alt="" />
-            <h3>{ description }</h3>
+            <a className="title" href="#">{ description }</a>
+            <div className="image">
+                    <img src={url} alt="" />
+            </div>
         </div>
+
+
+
+
+
+
     }
 }
