@@ -40,12 +40,12 @@ export class SearchForm extends React.Component<IProps, IState>{
                     value = {value}
                 />
 
-                <Input
-                    name={'filterInput'}
-                    onChange = {this.onInputChange}
-                    type = {InputTypes.TEXT}
-                    value = {value}
-                />
+                {/*<Input*/}
+                {/*    name={'filterInput'}*/}
+                {/*    onChange = {this.onInputChange}*/}
+                {/*    type = {InputTypes.TEXT}*/}
+                {/*    value = {value}*/}
+                {/*/>*/}
             </form>
 
     }

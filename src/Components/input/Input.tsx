@@ -1,5 +1,6 @@
 import * as React from "react";
 import {SyntheticEvent} from "react";
+import "./Input.scss";
 
 export enum InputTypes {
     TEXT = 'text',
@@ -26,14 +27,16 @@ export class Input extends React.Component<IProps, IState>{
     };
     render(){
         const { value, name } = this.props;
-        return <div className={'input'}>
+        return <div className={'.input__native-group'}>
             <input
                 name={name}
                 onChange = {this.onChange}
                 type={this.props.type}
-                className={'input__nativ-input'}
+                className={'input__native-input'}
                 value={value}
             />
+            <span className="input__native-bar"></span>
+            <label className={'input__native-label'}>Search</label>
         </div>
     }
 }

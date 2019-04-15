@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 1em;
 }
 
@@ -28,13 +28,13 @@
 
 
 .title {
-  font-size: 1.5em;
+  font-size: 1.1em;
   font-weight: bold;
   text-decoration: none;
   z-index: 1;
   position: absolute;
   height: 100%;
-  width: 100%;
+  width: calc(100% - 20px);
   top: 0;
   left: 0;
   opacity: 0;
