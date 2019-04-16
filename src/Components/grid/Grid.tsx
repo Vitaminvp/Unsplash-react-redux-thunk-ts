@@ -11,23 +11,27 @@ interface Props {
     filterInput: string;
 }
 
-// interface State {
-// }
-
 export class Grid extends React.PureComponent<Props, {}> {
     render() {
-        const { items, filterInput } = this.props;
+        const {items, filterInput} = this.props;
         const filteredItems = [...items].filter(item => {
-            if(item && item.description){
-                return item.description.includes(filterInput);
+            if (item.description) {
+                const regex = new RegExp(filterInput, 'gi');
+                return item.description.match(regex);
+            } else {
+                return true;
             }
-            return null;
+
+
         });
         return <div className={'grid'}>
             {
                 filteredItems.map(item => {
-                    const {description, urls, likes, id } = item;
-                    return <GridItem className={'grid__item'} key={id} id={id} url={urls.small} description={description}
+                    const {description, urls, likes, id} = item;
+                    return <GridItem className={'grid__item'}
+                                     key={id} id={id}
+                                     url={urls.small}
+                                     description={description}
                                      likes={likes}/>
                 })
             }

@@ -18,25 +18,25 @@ interface State {
   total: number;
   totalPages: number;
   currentPage: number;
-  value: string;
   searchInput: string;
   filterInput: string;
 }
+
 class App extends Component<{}, State> {
   state = {
     items: [],
     total: 0,
     totalPages: 0,
     currentPage: 1,
-    value: '',
     searchInput: '',
     filterInput: ''
   };
-  private fetchImages = async (value:string) => {
+
+  private fetchImages = async (filterInput:string) => {
     const { currentPage } = this.state;
     const axiosConfig = {
       params: {
-        query: value,
+        query: filterInput,
         page: currentPage
       }
     };
@@ -45,9 +45,9 @@ class App extends Component<{}, State> {
     return { total, totalPages, items};
 
   };
-  private handleSearch = async (value:string) => {
-    const responseData = await this.fetchImages(value);
-    this.setState(state => ({...state, ...responseData, value }));
+  private handleSearch = async (searchInput:string) => {
+    const responseData = await this.fetchImages(searchInput);
+    this.setState(state => ({...state, ...responseData }));
   };
 
   private loadImages = () => {
@@ -55,15 +55,14 @@ class App extends Component<{}, State> {
     this.setState(state => ({
         ...state, currentPage
     }), async ()=>{
-      const { items } = await this.fetchImages(this.state.value);
+      const { items } = await this.fetchImages(this.state.searchInput);
       const updateItems = [...this.state.items, ...items];
-      this.setState(state => ({...state, items: updateItems}));
+      this.setState(state => ({...state, items: updateItems}), () => console.log("this.state", this.state));
     });
   };
 
   private onFilter = (value: object) => {
-    console.log("value", value);
-      this.setState(state => ({...state, ...value}), () => console.log("this.state", this.state));
+      this.setState(state => ({...state, ...value}));
   };
 
   render() {
