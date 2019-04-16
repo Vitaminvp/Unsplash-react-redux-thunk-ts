@@ -12,8 +12,9 @@ export enum InputTypes {
 interface IProps {
     type: InputTypes,
     value: string,
-    onChange: (value: string) => void
+    onChange: (value: string, name: string) => void
     name: string
+    label: string
 }
 
 interface IState {
@@ -22,11 +23,11 @@ interface IState {
 
 export class Input extends React.Component<IProps, IState>{
     onChange = (e: SyntheticEvent<HTMLInputElement>) => {
-        const { value } = e.currentTarget;
-        this.props.onChange(value);
+        const { value, name } = e.currentTarget;
+        this.props.onChange(value, name);
     };
     render(){
-        const { value, name } = this.props;
+        const { value, name, label } = this.props;
         return <div className={'input__native-group'}>
                 <input
                     name={name}
@@ -35,8 +36,9 @@ export class Input extends React.Component<IProps, IState>{
                     className={'input__native-input'}
                     autoComplete="off"
                     value={value}
+                    onFocus={(e)=> e.currentTarget.value = ''}
                 />
-                <label className="input__native-label">Search</label>
+                <label className="input__native-label">{label}</label>
                 <span className="input__native-highlight">&nbsp;</span>
                 <span className="input__native-bar">&nbsp;</span>
             </div>

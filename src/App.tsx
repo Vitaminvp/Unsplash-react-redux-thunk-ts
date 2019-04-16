@@ -39,6 +39,7 @@ class App extends Component<{}, State> {
 
   };
   private handleSearch = async (value:string) => {
+    console.log('App', value);
     const responseData = await this.fetchImages(value);
     this.setState(state => ({...state, ...responseData, value }));
   };
@@ -55,11 +56,11 @@ class App extends Component<{}, State> {
   };
 
   render() {
-
+    const {total, items} = this.state;
     return <div className={'app-wrapper'}>
       <Nav onSearch={this.handleSearch} />
       <Grid {...this.state} />
-      <Button className="button" onClick={this.loadImages}>Show more (total: {this.state.total})</Button>
+      <Button className="native-button" onClick={this.loadImages}>Show more {total ? `(${items.length} of ${total})` : ''}</Button>
 
     </div>;
   }

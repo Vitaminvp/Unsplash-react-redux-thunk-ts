@@ -19,7 +19,6 @@ h2 {
 .grid__item {
   position: relative;
   margin-bottom: 1rem;
-
   overflow: hidden;
   animation: 1s linear 0s 1 normal none running anime;
   //box-shadow: 1px 2px 6px 0px #000;
@@ -28,7 +27,7 @@ h2 {
     //border: 2px solid rgba(90,0,10,0.4);
     box-shadow: 3px 3px 2px 1px #0000009c;
   }
-  object-fit: cover;
+  //object-fit: cover;
   background-color: rgba(37, 0, 10, 0.4);
 }
 

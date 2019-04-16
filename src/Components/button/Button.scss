@@ -1,4 +1,4 @@
-.button {
+.native-button {
   position: relative;
   display: block;
   margin: 30px auto;
@@ -11,22 +11,23 @@
   background-color: olivedrab;
   color: #ecf0f1;
   transition: background-color .3s;
+  cursor: pointer;
 }
 
-.button:hover, .button:focus {
+.native-button:hover, .native-button:focus {
   background-color: olivedrab;
 }
 
-.button > * {
+.native-button > * {
   position: relative;
 }
 
-.button span {
+.native-button span {
   display: block;
   padding: 12px 24px;
 }
 
-.button:before {
+.native-button:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -39,7 +40,7 @@
   transform: translate(-50%, -50%);
 }
 
-.button:active:before {
+.native-button:active:before {
   width: 120%;
   padding-top: 120%;
   transition: width .2s ease-out, padding-top .2s ease-out;

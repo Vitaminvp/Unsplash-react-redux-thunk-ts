@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Input, InputTypes} from "../input";
 import {SyntheticEvent} from "react";
+import "./SearchForm.scss";
 import classnames from "classnames";
 
 
@@ -10,39 +11,46 @@ interface IProps {
 }
 
 interface IState {
-    value: string
+    searchInput: string
+    filterInput: string
 }
 
 export class SearchForm extends React.Component<IProps, IState>{
     public state = {
-        value: ''
+        searchInput: '',
+        filterInput: ''
     };
-    private onInputChange = (value: string) => {
-        this.setState(state => ({...state, value }));
+    private onInputChange = (value: string, name: string) => {
+        console.log(value, name);
+        this.setState(state => ({...state, [name]: value }), () => console.log(this.state));
     };
     private onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        this.props.onSubmit(this.state.value);
+        console.log('e', e);
+        this.props.onSubmit(this.state.searchInput);
     };
 
     render(){
-        const { value } = this.state;
-        const classNames = classnames('search-form');
+        const { searchInput, filterInput } = this.state;
+        const classNames = classnames('search-form', 'native-form');
         return <form onSubmit={this.onSubmit} className={classNames}>
 
                 <Input
                     name={'searchInput'}
                     onChange = {this.onInputChange}
                     type = {InputTypes.TEXT}
-                    value = {value}
+                    value = {searchInput}
+                    label = {'Search'}
                 />
 
-                {/*<Input*/}
-                    {/*name={'filterInput'}*/}
-                    {/*onChange = {this.onInputChange}*/}
-                    {/*type = {InputTypes.TEXT}*/}
-                    {/*value = {value}*/}
-                {/*/>*/}
+                <Input
+                    name={'filterInput'}
+                    onChange = {this.onInputChange}
+                    type = {InputTypes.TEXT}
+                    value = {filterInput}
+                    label = {'Filter'}
+                />
+
             </form>
 
     }
