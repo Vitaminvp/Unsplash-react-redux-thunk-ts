@@ -47,6 +47,7 @@ h2 {
 .title {
   font-family: 'Lobster', cursive;
   font-weight: normal;
+  text-align: center;
   text-decoration: none;
   z-index: 1;
   position: absolute;
@@ -79,6 +80,15 @@ h2 {
   filter: blur(2px);
 }
 
+@keyframes anime {
+  from {
+    top:-30px
+  }
+  to {
+    top: 0
+  }
+}
+
 /* for touch screen devices */
 @media (hover: none) {
   .title {
@@ -89,11 +99,3 @@ h2 {
   }
 }
 
-@keyframes anime {
-  from {
-    top:-20px
-  }
-  to {
-    top: 0
-  }
-}
