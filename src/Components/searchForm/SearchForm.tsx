@@ -3,11 +3,15 @@ import {Input, InputTypes} from "../input";
 import {SyntheticEvent} from "react";
 import "./SearchForm.scss";
 import classnames from "classnames";
+import {Button} from "../button";
+import {ButtonTypes} from "../../App";
+import search from "../../img/search-img.png";
 
 
 interface IProps {
-    onSubmit: (value: string) => void,
-    className: string
+    onSubmit: (value: string) => void;
+    className: string;
+    onFilter: (value: string) => void;
 }
 
 interface IState {
@@ -20,43 +24,49 @@ export class SearchForm extends React.Component<IProps, IState>{
         searchInput: '',
         filterInput: ''
     };
-    private onInputChange = (value: string, name: string) => {
-        console.log(value, name);
-        this.setState(state => ({...state, [name]: value }), () => console.log(this.state));
-    };
+    // private onInputChange = (value: string, name: string) => {
+    //     console.log(value, name);
+    //     this.setState(state => ({...state, [name]: value }), () => console.log(this.state));
+    // };
     private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
-        console.log('form change', e);
-
+        const { onFilter } = this.props;
+        const { filterInput } = this.state;
+        // @ts-ignore
+        const inputs = Array.from(e.currentTarget.elements).filter(({ name }) => name);
+        const value = inputs.reduce((acc:any, cur:any) => {
+            if(cur.name){
+                return {...acc, [cur.name]: cur.value};
+            }
+            return acc;
+        }, {});
+        this.setState(state => ({...state, ...value }), () => onFilter(filterInput));
     };
+
     private onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('e', e.target);
-        //this.props.onSubmit(this.state.searchInput);
+        this.props.onSubmit(this.state.searchInput);
     };
 
     render(){
-        const { searchInput, filterInput } = this.state;
         const classNames = classnames('search-form', 'native-form');
-        return <form onSubmit={this.onSubmit} className={classNames} onChange={this.onFormChange}>
-
-                <Input
-                    name={'searchInput'}
-                    onChange = {this.onInputChange}
-                    type = {InputTypes.TEXT}
-                    value = {searchInput}
-                    label = {'Search'}
-                    onSubmit = {this.onSubmit}
-                />
-
+        return <form onSubmit={this.onSubmit}  className={classNames} onChange={this.onFormChange} >
+                <div className={'search'}>
+                    <Input
+                        name={'searchInput'}
+                        //onChange = {this.onInputChange}
+                        type = {InputTypes.TEXT}
+                        //value = {searchInput}
+                        label = {'Search'}
+                    />
+                    <Button type={ButtonTypes.SUBMIT} classNames={'btn-search'} > <img src={search} alt="Search" className={'icon-search'} /></Button>
+                </div>
                 <Input
                     name={'filterInput'}
-                    onChange = {this.onInputChange}
+                    //onChange = {this.onInputChange}
                     type = {InputTypes.TEXT}
-                    value = {filterInput}
+                    //value = {filterInput}
                     label = {'Filter'}
-                    onSubmit = {this.onSubmit}
                 />
-
             </form>
 
     }

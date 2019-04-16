@@ -10,12 +10,18 @@ import {Nav} from "./Components/nav";
 
 const apiUrl = '/search/photos';
 
+export enum ButtonTypes {
+  SUBMIT = 'submit',
+  BUTTON = 'button'
+}
+
 interface State {
-  items: Array<Image>,
-  total: number,
-  totalPages: number,
-  currentPage: number,
-  value: string
+  items: Array<Image>;
+  total: number;
+  totalPages: number;
+  currentPage: number;
+  value: string;
+  filter: string;
 }
 class App extends Component<{}, State> {
   state = {
@@ -23,7 +29,8 @@ class App extends Component<{}, State> {
     total: 0,
     totalPages: 0,
     currentPage: 1,
-    value: ''
+    value: '',
+    filter: ''
   };
   private fetchImages = async (value:string) => {
     const { currentPage } = this.state;
@@ -39,7 +46,6 @@ class App extends Component<{}, State> {
 
   };
   private handleSearch = async (value:string) => {
-    console.log('App', value);
     const responseData = await this.fetchImages(value);
     this.setState(state => ({...state, ...responseData, value }));
   };
@@ -55,13 +61,17 @@ class App extends Component<{}, State> {
     });
   };
 
+  private onFilter = (filter: string) => {
+    console.log("filter", filter);
+      this.setState(state => ({...state, filter}), () => console.log("this.state", this.state));
+  };
+
   render() {
     const {total, items} = this.state;
     return <div className={'app-wrapper'}>
-      <Nav onSearch={this.handleSearch} />
+      <Nav onSearch={this.handleSearch} onFilter={this.onFilter} />
       <Grid {...this.state} />
-      <Button className="native-button" onClick={this.loadImages}>Show more {total ? `(${items.length} of ${total})` : ''}</Button>
-
+      <Button className="native-button" type={ButtonTypes.BUTTON} onClick={this.loadImages}>Show more {total ? `(${items.length} of ${total})` : ''}</Button>
     </div>;
   }
 }

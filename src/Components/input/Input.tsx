@@ -11,11 +11,10 @@ export enum InputTypes {
 
 interface IProps {
     type: InputTypes,
-    value: string,
-    onChange: (value: string, name: string) => void
+    value?: string,
+    onChange?: (value: string, name: string) => void
     name: string
     label: string
-    onSubmit: (e: SyntheticEvent<HTMLFormElement>) => void
 }
 
 interface IState {
@@ -23,28 +22,22 @@ interface IState {
 }
 
 export class Input extends React.Component<IProps, IState>{
-    onChange = (e: SyntheticEvent<HTMLInputElement>) => {
-        const { value, name } = e.currentTarget;
-        this.props.onChange(value, name);
-    };
-    onSubmit = (e: SyntheticEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        console.log(e);
-        const target = e.currentTarget;
-        //this.props.onSubmit(target);
-    };
+    // onChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    //     const { value, name } = e.currentTarget;
+    //     this.props.onChange(value, name);
+    // };
+
     render(){
         const { value, name, label } = this.props;
         return <div className={'input__native-group'}>
                 <input
                     name={name}
-                    onChange = {this.onChange}
+                    //onChange = {this.onChange}
                     type={this.props.type}
                     className={'input__native-input'}
                     autoComplete="off"
-                    value={value}
+                    //value={value}
                     onFocus={(e)=> e.currentTarget.value = ''}
-                    onSubmit={this.onSubmit}
                 />
                 <label className="input__native-label">{label}</label>
                 <span className="input__native-highlight">&nbsp;</span>

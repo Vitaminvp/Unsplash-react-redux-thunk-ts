@@ -45,3 +45,15 @@
   padding-top: 120%;
   transition: width .2s ease-out, padding-top .2s ease-out;
 }
+.btn-search{
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  display: block;
+  top: 4px;
+  right: 16px;
+}
+.icon-search{
+  width: 35px;
+  outline: none;
+}

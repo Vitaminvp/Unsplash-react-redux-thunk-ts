@@ -8,6 +8,7 @@ interface Props {
     items: Array<Image>;
     total: number;
     totalPages: number;
+    filter: string;
 }
 
 interface State {
@@ -16,11 +17,17 @@ interface State {
 
 export class Grid extends React.PureComponent<Props, State> {
     render() {
-        const { items, total } = this.props;
+        const { items, filter } = this.props;
+        const filteredItems = [...items].filter(item => {
+            if(item && item.description){
+                return item.description.includes(filter)
+            }
+            return null;
+        });
         return <div className={'grid'}>
             {
-                items.map(item => {
-                    const {description, urls, likes, id, height} = item;
+                filteredItems.map(item => {
+                    const {description, urls, likes, id } = item;
                     return <GridItem className={'grid__item'} key={id} id={id} url={urls.small} description={description}
                                      likes={likes}/>
                 })
