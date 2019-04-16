@@ -24,16 +24,20 @@ export class SearchForm extends React.Component<IProps, IState>{
         console.log(value, name);
         this.setState(state => ({...state, [name]: value }), () => console.log(this.state));
     };
+    private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
+        console.log('form change', e);
+
+    };
     private onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('e', e);
-        this.props.onSubmit(this.state.searchInput);
+        console.log('e', e.target);
+        //this.props.onSubmit(this.state.searchInput);
     };
 
     render(){
         const { searchInput, filterInput } = this.state;
         const classNames = classnames('search-form', 'native-form');
-        return <form onSubmit={this.onSubmit} className={classNames}>
+        return <form onSubmit={this.onSubmit} className={classNames} onChange={this.onFormChange}>
 
                 <Input
                     name={'searchInput'}
@@ -41,6 +45,7 @@ export class SearchForm extends React.Component<IProps, IState>{
                     type = {InputTypes.TEXT}
                     value = {searchInput}
                     label = {'Search'}
+                    onSubmit = {this.onSubmit}
                 />
 
                 <Input
@@ -49,6 +54,7 @@ export class SearchForm extends React.Component<IProps, IState>{
                     type = {InputTypes.TEXT}
                     value = {filterInput}
                     label = {'Filter'}
+                    onSubmit = {this.onSubmit}
                 />
 
             </form>

@@ -15,6 +15,7 @@ interface IProps {
     onChange: (value: string, name: string) => void
     name: string
     label: string
+    onSubmit: (e: SyntheticEvent<HTMLFormElement>) => void
 }
 
 interface IState {
@@ -25,6 +26,12 @@ export class Input extends React.Component<IProps, IState>{
     onChange = (e: SyntheticEvent<HTMLInputElement>) => {
         const { value, name } = e.currentTarget;
         this.props.onChange(value, name);
+    };
+    onSubmit = (e: SyntheticEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        console.log(e);
+        const target = e.currentTarget;
+        //this.props.onSubmit(target);
     };
     render(){
         const { value, name, label } = this.props;
@@ -37,6 +44,7 @@ export class Input extends React.Component<IProps, IState>{
                     autoComplete="off"
                     value={value}
                     onFocus={(e)=> e.currentTarget.value = ''}
+                    onSubmit={this.onSubmit}
                 />
                 <label className="input__native-label">{label}</label>
                 <span className="input__native-highlight">&nbsp;</span>
