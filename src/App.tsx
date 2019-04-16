@@ -56,10 +56,10 @@ class App extends Component<{}, State> {
 
   render() {
 
-    return <div>
+    return <div className={'app-wrapper'}>
       <Nav onSearch={this.handleSearch} />
       <Grid {...this.state} />
-      <Button className="grid__btn" onClick={this.loadImages}>Show more (total: {this.state.total})</Button>
+      <Button className="button" onClick={this.loadImages}>Show more (total: {this.state.total})</Button>
 
     </div>;
   }

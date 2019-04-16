@@ -1,5 +1,6 @@
 import React from "react";
 //import {SyntheticEvent} from "react";
+import "./GridItem.scss";
 
 
 
@@ -9,6 +10,7 @@ interface IProps {
     description: string,
     likes: number,
     link?: string,
+    height?: number,
     className?: string
 }
 
@@ -19,18 +21,16 @@ interface IState {
 export class GridItem extends React.Component<IProps, IState>{
 
     render(){
-        const { url, likes, link, description, className: classN } = this.props;
-        return <div className={classN}>
-            <a className="title" href="#">{ description }</a>
+        const { url, likes, link, description, className: classN, height } = this.props;
+        const titleStyle = {
+            height: `${height}px`,
+        };
+
+        return <article className={classN}>
+            <a className="title" href="#" style={titleStyle}>{ description }</a>
             <div className="image">
-                    <img src={url} alt="" />
+                <img src={url} alt="" />
             </div>
-        </div>
-
-
-
-
-
-
+        </article>
     }
 }
