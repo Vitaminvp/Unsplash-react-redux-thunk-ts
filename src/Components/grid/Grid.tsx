@@ -8,19 +8,18 @@ interface Props {
     items: Array<Image>;
     total: number;
     totalPages: number;
-    filter: string;
+    filterInput: string;
 }
 
-interface State {
-    value: string,
-}
+// interface State {
+// }
 
-export class Grid extends React.PureComponent<Props, State> {
+export class Grid extends React.PureComponent<Props, {}> {
     render() {
-        const { items, filter } = this.props;
+        const { items, filterInput } = this.props;
         const filteredItems = [...items].filter(item => {
             if(item && item.description){
-                return item.description.includes(filter)
+                return item.description.includes(filterInput);
             }
             return null;
         });

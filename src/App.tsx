@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import axios from "axios";
 import './App.scss';
-import {SearchForm} from "./Components/searchForm";
 import {Grid} from "./Components/grid";
 import {Image, SearchResponse} from './types/API';
 import unsplashApi from "./api";
@@ -21,7 +19,8 @@ interface State {
   totalPages: number;
   currentPage: number;
   value: string;
-  filter: string;
+  searchInput: string;
+  filterInput: string;
 }
 class App extends Component<{}, State> {
   state = {
@@ -30,7 +29,8 @@ class App extends Component<{}, State> {
     totalPages: 0,
     currentPage: 1,
     value: '',
-    filter: ''
+    searchInput: '',
+    filterInput: ''
   };
   private fetchImages = async (value:string) => {
     const { currentPage } = this.state;
@@ -61,9 +61,9 @@ class App extends Component<{}, State> {
     });
   };
 
-  private onFilter = (filter: string) => {
-    console.log("filter", filter);
-      this.setState(state => ({...state, filter}), () => console.log("this.state", this.state));
+  private onFilter = (value: object) => {
+    console.log("value", value);
+      this.setState(state => ({...state, ...value}), () => console.log("this.state", this.state));
   };
 
   render() {
