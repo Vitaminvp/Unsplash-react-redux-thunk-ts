@@ -15,17 +15,8 @@ interface IProps {
 }
 
 export class SearchForm extends React.Component<IProps, {}>{
-    // public state = {
-    //     searchInput: '',
-    //     filterInput: ''
-    // };
-    // private onInputChange = (value: string, name: string) => {
-    //     console.log(value, name);
-    //     this.setState(state => ({...state, [name]: value }), () => console.log(this.state));
-    // };
     private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
         const { onFilter } = this.props;
-        //const { filterInput } = this.state;
 
         const inputs = Array.from(e.currentTarget.elements).filter((element:any) => {
             if(element && element['name']){
@@ -55,8 +46,6 @@ export class SearchForm extends React.Component<IProps, {}>{
                         name={'searchInput'}
                         type = {InputTypes.TEXT}
                         label = {'Search'}
-                        //onChange = {this.onInputChange}
-                        //value = {searchInput}
                     />
                     <Button type={ButtonTypes.SUBMIT} classNames={'btn-search'} > <img src={search} alt="Search" className={'icon-search'} /></Button>
                 </div>
@@ -64,8 +53,6 @@ export class SearchForm extends React.Component<IProps, {}>{
                     name={'filterInput'}
                     type = {InputTypes.TEXT}
                     label = {'Filter'}
-                    //onChange = {this.onInputChange}
-                    //value = {filterInput}
                 />
             </form>
 

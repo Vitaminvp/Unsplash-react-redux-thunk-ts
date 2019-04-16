@@ -17,32 +17,19 @@ interface IProps {
     label: string
 }
 
-// interface IState {
-//     value: string,
-// }
+export const Input: React.FunctionComponent<IProps> = ({ name, label, type }) => {
 
-export class Input extends React.Component<IProps, {}>{
-    // onChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    //     const { value, name } = e.currentTarget;
-    //     this.props.onChange(value, name);
-    // };
+    return <div className={'input__native-group'}>
+            <input
+                name={name}
+                type={type}
+                className={'input__native-input'}
+                autoComplete="off"
+                onFocus={(e)=> e.currentTarget.value = ''}
+            />
+            <label className="input__native-label">{label}</label>
+            <span className="input__native-highlight">&nbsp;</span>
+            <span className="input__native-bar">&nbsp;</span>
+        </div>
 
-    render(){
-        const { value, name, label } = this.props;
-        return <div className={'input__native-group'}>
-                <input
-                    name={name}
-                    type={this.props.type}
-                    className={'input__native-input'}
-                    autoComplete="off"
-                    onFocus={(e)=> e.currentTarget.value = ''}
-                    //onChange = {this.onChange}
-                    //value={value}
-                />
-                <label className="input__native-label">{label}</label>
-                <span className="input__native-highlight">&nbsp;</span>
-                <span className="input__native-bar">&nbsp;</span>
-            </div>
-
-    }
 }
