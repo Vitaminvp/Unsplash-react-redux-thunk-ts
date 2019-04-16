@@ -14,11 +14,6 @@ interface IProps {
     onFilter: (value: object) => void;
 }
 
-// interface IState {
-//     searchInput: string
-//     filterInput: string
-// }
-
 export class SearchForm extends React.Component<IProps, {}>{
     // public state = {
     //     searchInput: '',
@@ -31,8 +26,13 @@ export class SearchForm extends React.Component<IProps, {}>{
     private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
         const { onFilter } = this.props;
         //const { filterInput } = this.state;
-        // @ts-ignore
-        const inputs = Array.from(e.currentTarget.elements).filter(({ name }) => name);
+
+        const inputs = Array.from(e.currentTarget.elements).filter((element:any) => {
+            if(element && element['name']){
+                return element['name'];
+            }
+            return null;
+        });
         const value = inputs.reduce((acc:object, cur:any) => {
             if(cur.name){
                 return {...acc, [cur.name]: cur.value};
