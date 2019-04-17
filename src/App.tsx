@@ -70,7 +70,10 @@ class App extends Component<{}, State> {
     return <div className={'app-wrapper'}>
       <Nav onSearch={this.handleSearch} onFilter={this.onFilter} />
       <Grid {...this.state} />
-      <Button className="native-button" type={ButtonTypes.BUTTON} onClick={this.loadImages}>Show more {total ? `(${items.length} of ${total})` : ''}</Button>
+      {items.length > 0 && total > items.length?
+          <Button className="native-button" type={ButtonTypes.BUTTON} onClick={this.loadImages}>Show more {total ? `(${items.length} of ${total})` : ''}</Button>
+          : null
+      }
     </div>;
   }
 }
