@@ -10,6 +10,7 @@ interface Props {
     total: number;
     totalPages: number;
     filterInput: string;
+    text: string;
 }
 
 class Grid extends React.PureComponent<Props, {}> {
@@ -26,6 +27,7 @@ class Grid extends React.PureComponent<Props, {}> {
 
         });
         return <div className={'grid'}>
+            <div>{this.props.text}</div>
             {
                 filteredItems.map(item => {
                     const {description, urls, likes, id} = item;
