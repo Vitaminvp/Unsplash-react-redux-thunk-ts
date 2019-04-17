@@ -1,7 +1,11 @@
 import {Action} from "../types/action";
 import {ActionTypes} from "../actions";
 
-export const unsplash = (state: any={}, action: Action<ActionTypes.FETCH, string>) => {
+const INITIAL_STATE={
+    text: 'some text'
+};
+
+export const unsplash = (state: any = INITIAL_STATE, action: Action<ActionTypes.FETCH, string>) => {
 
     switch(action.type) {
         case ActionTypes.FETCH:

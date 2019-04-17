@@ -2,6 +2,7 @@ import React from "react";
 import {Image} from '../../types/API';
 import './Grid.scss';
 import {GridItem} from "../gridItem";
+import {connect} from "react-redux";
 
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
     filterInput: string;
 }
 
-export class Grid extends React.PureComponent<Props, {}> {
+class Grid extends React.PureComponent<Props, {}> {
     render() {
         const {items, filterInput} = this.props;
         const filteredItems = [...items].filter(item => {
@@ -38,3 +39,24 @@ export class Grid extends React.PureComponent<Props, {}> {
         </div>
     }
 }
+
+const mapStateToProps = (state: any) => {
+    return {
+        text: state.unsplash.text
+    }
+};
+
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         onTodoClick: id => {
+//             dispatch(toggleTodo(id))
+//         }
+//     }
+// }
+
+const GridWrapper = connect(
+    mapStateToProps,
+    //mapDispatchToProps
+)(Grid);
+
+export {GridWrapper as Grid};
