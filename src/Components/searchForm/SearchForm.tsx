@@ -13,10 +13,9 @@ import {string} from "prop-types";
 
 
 interface IProps {
-    onSubmit: (value: string) => void;
+    onSubmit: (searchInput: string) => void;
     className: string;
     onFilter: (value: object) => void;
-    onSearch: (value: string) => void;
 }
 
 class SearchForm extends React.Component<IProps, {}>{
@@ -79,10 +78,6 @@ class SearchForm extends React.Component<IProps, {}>{
     //     this.setState(state => ({...state, ...value}));
     // };
 
-
-
-
-
     render(){
         const classNames = classnames('search-form', 'native-form');
         return <form onSubmit={this.onSubmit}  className={classNames} onChange={this.onFormChange} >
@@ -104,23 +99,24 @@ class SearchForm extends React.Component<IProps, {}>{
     }
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-        items: state.unsplash.items
-    }
-};
+// const mapStateToProps = (state: any) => {
+//     return {
+//         items: state.unsplash.items
+//     }
+// };
 
-const mapDispatchToProps = (dispatch:any) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
-        onSearch: (searchInput: string) => {
-           dispatch(fetchItems(payload: {searchInput, currentPage: 1}))
+        onSubmit: (searchInput: string) => {
+           dispatch(fetchItems( {searchInput, currentPage: 1}))
         }
     }
 }
 
 const SearchFormWrapper = connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(SearchForm);
 
+// export { SearchForm};
 export {SearchFormWrapper as SearchForm};

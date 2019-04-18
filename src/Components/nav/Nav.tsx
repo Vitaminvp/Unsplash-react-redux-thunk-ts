@@ -6,7 +6,8 @@ export const Nav: React.FunctionComponent<any> = ({ onSearch, onFilter }) => {
 
     return <nav className={'nav'}>
             <div className={'nav__container'}>
-                <SearchForm onSubmit={ onSearch } onFilter={onFilter} className='nav__search-form'/>
+                <SearchForm  onFilter={onFilter} className='nav__search-form'/>
+                {/*onSubmit={ onSearch }*/}
             </div>
         </nav>;
 };
