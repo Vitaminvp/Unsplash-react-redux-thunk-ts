@@ -12,11 +12,11 @@ const options =  axios.create({
 })
 
 
-const  getImages = async (filterInput:string, currentPage: number) => {
+const  getImages = async (searchInput:string, currentPage: number) => {
     //const { currentPage } = this.state;
     const axiosConfig = {
         params: {
-            query: filterInput,
+            query: searchInput,
             page: currentPage
         }
     };
