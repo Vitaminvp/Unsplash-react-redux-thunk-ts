@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import './App.scss';
 import {Grid} from "./Components/grid";
-import {Image, SearchResponse} from './types/API';
-import unsplashApi from "./api";
+import {Image} from './types/API';
+import getImages from "./api";
 import {Button} from "./Components/button";
 import {Nav} from "./Components/nav";
-
-const apiUrl = '/search/photos';
 
 export enum ButtonTypes {
   SUBMIT = 'submit',
@@ -32,21 +30,11 @@ class App extends Component<{}, State> {
     filterInput: ''
   };
 
-  private fetchImages = async (filterInput:string) => {
-    const { currentPage } = this.state;
-    const axiosConfig = {
-      params: {
-        query: filterInput,
-        page: currentPage
-      }
-    };
-    const response =  await unsplashApi.get<SearchResponse>(apiUrl, axiosConfig);
-    const { total, total_pages: totalPages, results: items} =  response.data;
-    return { total, totalPages, items};
-
-  };
   private handleSearch = async (searchInput:string) => {
-    const responseData = await this.fetchImages(searchInput);
+    const { currentPage } = this.state;
+    //const responseData = await this.fetchImages(searchInput);
+    const responseData = await getImages(searchInput, currentPage);
+
     this.setState(state => ({...state, ...responseData }));
   };
 
@@ -55,7 +43,8 @@ class App extends Component<{}, State> {
     this.setState(state => ({
         ...state, currentPage
     }), async ()=>{
-      const { items } = await this.fetchImages(this.state.searchInput);
+      const { searchInput, currentPage } = this.state;
+      const { items } = await getImages(searchInput, currentPage);
       const updateItems = [...this.state.items, ...items];
       this.setState(state => ({...state, items: updateItems}), () => console.log("this.state", this.state));
     });

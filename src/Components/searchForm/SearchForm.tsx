@@ -6,15 +6,20 @@ import classnames from "classnames";
 import {Button} from "../button";
 import {ButtonTypes} from "../../App";
 import search from "../../img/search-img.png";
+import {fetchItems} from "../../actions";
+import {connect} from "react-redux";
+import getImages from "../../api";
+import {string} from "prop-types";
 
 
 interface IProps {
     onSubmit: (value: string) => void;
     className: string;
     onFilter: (value: object) => void;
+    onSearch: (value: string) => void;
 }
 
-export class SearchForm extends React.Component<IProps, {}>{
+class SearchForm extends React.Component<IProps, {}>{
     private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
         const { onFilter } = this.props;
 
@@ -38,6 +43,46 @@ export class SearchForm extends React.Component<IProps, {}>{
         this.props.onSubmit(e.currentTarget['searchInput'].value);
     };
 
+
+
+
+    // state = {
+    //     items: [],
+    //     total: 0,
+    //     totalPages: 0,
+    //     currentPage: 1,
+    //     searchInput: '',
+    //     filterInput: ''
+    // };
+    //
+    // private handleSearch = async (searchInput:string) => {
+    //     const { currentPage } = this.state;
+    //     //const responseData = await this.fetchImages(searchInput);
+    //     const responseData = await getImages(searchInput, currentPage);
+    //
+    //     this.setState(state => ({...state, ...responseData }));
+    // };
+    //
+    // private loadImages = () => {
+    //     const currentPage = ++this.state.currentPage;
+    //     this.setState(state => ({
+    //         ...state, currentPage
+    //     }), async ()=>{
+    //         const { searchInput, currentPage } = this.state;
+    //         const { items } = await getImages(searchInput, currentPage);
+    //         const updateItems = [...this.state.items, ...items];
+    //         this.setState(state => ({...state, items: updateItems}), () => console.log("this.state", this.state));
+    //     });
+    // };
+    //
+    // private onFilter = (value: object) => {
+    //     this.setState(state => ({...state, ...value}));
+    // };
+
+
+
+
+
     render(){
         const classNames = classnames('search-form', 'native-form');
         return <form onSubmit={this.onSubmit}  className={classNames} onChange={this.onFormChange} >
@@ -58,3 +103,24 @@ export class SearchForm extends React.Component<IProps, {}>{
 
     }
 }
+
+const mapStateToProps = (state: any) => {
+    return {
+        items: state.unsplash.items
+    }
+};
+
+const mapDispatchToProps = (dispatch:any) => {
+    return {
+        onSearch: (searchInput: string) => {
+           dispatch(fetchItems(payload: {searchInput, currentPage: 1}))
+        }
+    }
+}
+
+const SearchFormWrapper = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SearchForm);
+
+export {SearchFormWrapper as SearchForm};
