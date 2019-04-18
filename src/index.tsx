@@ -8,18 +8,16 @@ import reducers  from "./reducers";
 import reduxThunk from "redux-thunk";
 
 //@ts-ignore
-const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION__();
+const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION__;
 
 const store = createStore(
     reducers,
     compose(
         applyMiddleware(reduxThunk),
-        composedEnhancer,
+        composedEnhancer(),
     )
 
 );
 
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
-
-
