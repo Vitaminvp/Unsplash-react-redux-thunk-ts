@@ -5,14 +5,18 @@ import App from './App';
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reducers  from "./reducers";
-import thunk from "redux-thunk";
+import reduxThunk from "redux-thunk";
 
 //@ts-ignore
-const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION__;
+const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION__();
 
 const store = createStore(
     reducers,
-    composedEnhancer()
+    compose(
+        applyMiddleware(reduxThunk),
+        composedEnhancer,
+    )
+
 );
 
 

@@ -4,9 +4,9 @@ export enum ActionTypes {
     FETCH
 }
 
-const fetchItems: ()=> Action<ActionTypes.FETCH, string> = () => {
+export const fetchItems = (payload?:string):Action<ActionTypes.FETCH, string>  => {
     return ({
         type: ActionTypes.FETCH,
-        payload: 'some text'
+        payload: payload || "рыба"
     });
 };

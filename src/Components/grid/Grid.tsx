@@ -3,6 +3,7 @@ import {Image} from '../../types/API';
 import './Grid.scss';
 import {GridItem} from "../gridItem";
 import {connect} from "react-redux";
+import {fetchItems} from "../../actions/unsplash";
 
 
 interface Props {
@@ -11,11 +12,12 @@ interface Props {
     totalPages: number;
     filterInput: string;
     text: string;
+    onDivClick: ()=> void
 }
 
 class Grid extends React.PureComponent<Props, {}> {
     render() {
-        const {items, filterInput} = this.props;
+        const {items, filterInput, onDivClick} = this.props;
         const filteredItems = [...items].filter(item => {
             if (item.description) {
                 const regex = new RegExp(filterInput, 'gi');
@@ -27,7 +29,7 @@ class Grid extends React.PureComponent<Props, {}> {
 
         });
         return <div className={'grid'}>
-            <div>{this.props.text}</div>
+            <div onClick={onDivClick}>{this.props.text}</div>
             {
                 filteredItems.map(item => {
                     const {description, urls, likes, id} = item;
@@ -48,17 +50,17 @@ const mapStateToProps = (state: any) => {
     }
 };
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         onTodoClick: id => {
-//             dispatch(toggleTodo(id))
-//         }
-//     }
-// }
+const mapDispatchToProps = (dispatch:any) => {
+    return {
+        onDivClick: () => {
+            dispatch(fetchItems())
+        }
+    }
+}
 
 const GridWrapper = connect(
     mapStateToProps,
-    //mapDispatchToProps
+    mapDispatchToProps
 )(Grid);
 
 export {GridWrapper as Grid};

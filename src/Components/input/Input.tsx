@@ -31,5 +31,4 @@ export const Input: React.FunctionComponent<IProps> = ({ name, label, type }) =>
             <span className="input__native-highlight">&nbsp;</span>
             <span className="input__native-bar">&nbsp;</span>
         </div>
-
-}
+};
