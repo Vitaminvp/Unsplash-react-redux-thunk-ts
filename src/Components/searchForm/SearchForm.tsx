@@ -14,10 +14,13 @@ import {filterActionCreator} from "../../actions/filter";
 import {connect} from "react-redux";
 
 
-
+export enum Sort {
+    ASC = 'asc',
+    DESC = 'desc'
+}
 interface Props {
     onSubmit: (searchInput: string, currentPage: number) => void;
-    onChange: (filterInput: string) => void;
+    onChange: (filterInput: string, radioInput: string) => void;
     className: string;
 }
 interface State {
@@ -31,14 +34,13 @@ class SearchForm extends React.Component<Props, State>{
     state = {
         currentPage: 1,
         searchInput: '',
-        filterInput: ''
+        filterInput: '',
+        radioInput: Sort.ASC
     };
     private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
         const { onChange } = this.props;
-        const { filterInput } = this.state;
-        const nextFilterInput = e.currentTarget['filterInput'].value;
-
-
+        const { searchInput, radioInput } = this.state;
+        const nextSearchInput = e.currentTarget['searchInput'].value;
 
         const inputs = Array.from(e.currentTarget.elements).filter((element:any) => {
             if(element && element['name']){
@@ -48,15 +50,22 @@ class SearchForm extends React.Component<Props, State>{
         });
         const value = inputs.reduce((acc:object, cur:any) => {
             if(cur.name){
-                return {...acc, [cur.name]: cur.value};
+                if(cur.name === 'radioInput'){
+                    if(cur.checked === true){
+                        return {...acc, [cur.name]: cur.id};
+                    }
+                    return acc;
+                }else{
+                    return {...acc, [cur.name]: cur.value};
+
+                }
             }
             return acc;
         }, {});
 
         this.setState(state => ({...state, ...value}), () => {
-            if(nextFilterInput !== filterInput){
-                console.log(nextFilterInput);
-                onChange(nextFilterInput);
+            if(nextSearchInput === searchInput){
+                onChange(this.state.filterInput, radioInput);
             }
         });
 
@@ -86,16 +95,18 @@ class SearchForm extends React.Component<Props, State>{
                 />
                 <div className={'search'}>
                     <Radio
-                        id={'one'}
+                        id={'desc'}
                         name={'radioInput'}
                         type = {InputTypes.RADIO}
                         label = {<img src={desc} />}
+                        //checked = {true}
                     />
                     <Radio
-                        id={'two'}
+                        id={'asc'}
                         name={'radioInput'}
                         type = {InputTypes.RADIO}
                         label = {<img src={asc} />}
+
                     />
                 </div>
             </form>
@@ -108,8 +119,8 @@ const mapDispatchToProps = (dispatch: any) => {
         onSubmit: (searchInput: string, currentPage: number) => {
            dispatch(fetchItems( {searchInput, currentPage}))
         },
-        onChange: (filterInput: string) => {
-            dispatch(filterActionCreator(filterInput))
+        onChange: (filterInput: string, radioInput: string) => {
+            dispatch(filterActionCreator({filterInput, radioInput}))
         }
     }
 };

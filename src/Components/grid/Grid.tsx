@@ -6,6 +6,7 @@ import {fetchItems} from "../../actions/unsplash";
 import {connect} from "react-redux";
 import {Button} from "../button";
 import {ButtonTypes} from "../../App";
+import {Sort} from "../searchForm";
 
 interface Props {
     items: Array<Image>;
@@ -13,6 +14,7 @@ interface Props {
     filterInput: string;
     currentPage: number;
     searchInput: string;
+    radioInput: string;
     onAddItems: (searchInput: string, currentPage: number)=> void;
 }
 
@@ -24,25 +26,26 @@ class Grid extends React.PureComponent<Props, {}> {
     };
 
     render() {
-        const { items, total, filterInput} = this.props;
+        const { items, total, filterInput, radioInput} = this.props;
         const filteredItems = [...items].filter(item => {
-            if (item.description) {
+            if (item.alt_description) {
                 const regex = new RegExp(filterInput, 'gi');
-                return item.description.match(regex);
+                return item.alt_description.match(regex);
             } else {
                 return true;
             }
-
         });
+        const sortedItems = radioInput === Sort.DESC ? filteredItems.sort((a:any, b:any):any => b.likes - a.likes ? -1 : 1): filteredItems;
+
         return <>
             <div className={'grid'}>
                 {
-                    filteredItems.map(item => {
-                        const {description, urls, likes, id} = item;
+                    sortedItems.map(item => {
+                        const {alt_description, urls, likes, id} = item;
                         return <GridItem className={'grid__item'}
                                          key={id} id={id}
                                          url={urls.small}
-                                         description={description}
+                                         description={alt_description}
                                          likes={likes}/>
                     })
                 }
@@ -61,7 +64,8 @@ const mapStateToProps = (state: any) => {
         total: state.unsplash.total,
         searchInput: state.unsplash.searchInput,
         filterInput: state.unsplash.filterInput,
-        currentPage: state.unsplash.currentPage
+        currentPage: state.unsplash.currentPage,
+        radioInput: state.unsplash.radioInput,
     }
 };
 

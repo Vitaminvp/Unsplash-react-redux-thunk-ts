@@ -8,10 +8,9 @@ export enum ActionTypes {
 export const fetchItems = (payload: {searchInput: string, currentPage: number}):any  => {
     return async (dispatch:any) => {
         const response = await getImages(payload.searchInput, payload.currentPage);
-        console.log('response', response);
         dispatch({
             type: ActionTypes.FETCH,
-            payload: {...response, searchInput: payload.searchInput ,currentPage: payload.currentPage}
+            payload: {...response, searchInput: payload.searchInput, currentPage: payload.currentPage}
         });
     };
 };

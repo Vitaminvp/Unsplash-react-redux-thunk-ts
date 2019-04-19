@@ -1,6 +1,7 @@
 import {Action} from "../types/action";
 import {ActionTypes} from "../actions/unsplash";
 import {Image} from "../types/API";
+import {Sort} from "../Components/searchForm";
 
 interface UnsplashState {
     items: Array<Image>;
@@ -15,7 +16,8 @@ const INITIAL_STATE={
     totalPages: 0,
     currentPage: 0,
     searchInput: "",
-    filterInput: ""
+    filterInput: "",
+    radioInput: Sort.ASC
 };
 
 export const unsplash = (state: UnsplashState = INITIAL_STATE, action: Action<ActionTypes, any>) => {
@@ -25,7 +27,7 @@ export const unsplash = (state: UnsplashState = INITIAL_STATE, action: Action<Ac
             return { ...state, ...action.payload, items };
 
         case ActionTypes.FILTER:
-            return { ...state, filterInput: action.payload };
+            return { ...state, ...action.payload };
 
         default:
             return state;

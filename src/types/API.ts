@@ -38,6 +38,7 @@ export interface Image {
     id: string;
     created_at: Date;
     width: number;
+    alt_description: string;
     height: number;
     color: string;
     likes: number;
