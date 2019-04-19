@@ -1,16 +1,18 @@
-import {Action} from "../types/action";
 import getImages from "../api";
 
+
 export enum ActionTypes {
-    FETCH = '@unsplash/fetch'
+    FETCH = '@unsplash/fetch',
+    FILTER = '@unsplash/filter'
 }
 
-export const fetchItems = (payload: {searchInput: string, currentPage: number}):any  => { //Action<ActionTypes.FETCH, string>
+export const fetchItems = (payload: {searchInput: string, currentPage: number}):any  => {
     return async (dispatch:any) => {
         const response = await getImages(payload.searchInput, payload.currentPage);
+        console.log('response', response);
         dispatch({
             type: ActionTypes.FETCH,
-            payload: response
+            payload: {...response, searchInput: payload.searchInput ,currentPage: payload.currentPage}
         });
     };
 };

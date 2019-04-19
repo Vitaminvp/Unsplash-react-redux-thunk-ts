@@ -6,21 +6,36 @@ import classnames from "classnames";
 import {Button} from "../button";
 import {ButtonTypes} from "../../App";
 import search from "../../img/search-img.png";
-import {fetchItems} from "../../actions";
+import {fetchItems} from "../../actions/unsplash";
+import {filterActionCreator} from "../../actions/filter";
 import {connect} from "react-redux";
-import getImages from "../../api";
-import {string} from "prop-types";
 
 
-interface IProps {
-    onSubmit: (searchInput: string) => void;
+
+interface Props {
+    onSubmit: (searchInput: string, currentPage: number) => void;
+    onChange: (filterInput: string) => void;
     className: string;
-    onFilter: (value: object) => void;
+}
+interface State {
+    currentPage: number;
+    searchInput: string;
+    filterInput: string;
 }
 
-class SearchForm extends React.Component<IProps, {}>{
+
+class SearchForm extends React.Component<Props, State>{
+    state = {
+        currentPage: 1,
+        searchInput: '',
+        filterInput: ''
+    };
     private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
-        const { onFilter } = this.props;
+        const { onChange } = this.props;
+        const { filterInput } = this.state;
+        const nextFilterInput = e.currentTarget['filterInput'].value;
+
+
 
         const inputs = Array.from(e.currentTarget.elements).filter((element:any) => {
             if(element && element['name']){
@@ -34,49 +49,21 @@ class SearchForm extends React.Component<IProps, {}>{
             }
             return acc;
         }, {});
-        onFilter(value);
+
+        this.setState(state => ({...state, ...value}), () => {
+            if(nextFilterInput !== filterInput){
+                console.log(nextFilterInput);
+                onChange(nextFilterInput);
+            }
+        });
+
     };
 
     private onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        this.props.onSubmit(e.currentTarget['searchInput'].value);
+        const {searchInput, currentPage} = this.state;
+        this.props.onSubmit(searchInput, currentPage);
     };
-
-
-
-
-    // state = {
-    //     items: [],
-    //     total: 0,
-    //     totalPages: 0,
-    //     currentPage: 1,
-    //     searchInput: '',
-    //     filterInput: ''
-    // };
-    //
-    // private handleSearch = async (searchInput:string) => {
-    //     const { currentPage } = this.state;
-    //     //const responseData = await this.fetchImages(searchInput);
-    //     const responseData = await getImages(searchInput, currentPage);
-    //
-    //     this.setState(state => ({...state, ...responseData }));
-    // };
-    //
-    // private loadImages = () => {
-    //     const currentPage = ++this.state.currentPage;
-    //     this.setState(state => ({
-    //         ...state, currentPage
-    //     }), async ()=>{
-    //         const { searchInput, currentPage } = this.state;
-    //         const { items } = await getImages(searchInput, currentPage);
-    //         const updateItems = [...this.state.items, ...items];
-    //         this.setState(state => ({...state, items: updateItems}), () => console.log("this.state", this.state));
-    //     });
-    // };
-    //
-    // private onFilter = (value: object) => {
-    //     this.setState(state => ({...state, ...value}));
-    // };
 
     render(){
         const classNames = classnames('search-form', 'native-form');
@@ -99,24 +86,20 @@ class SearchForm extends React.Component<IProps, {}>{
     }
 }
 
-// const mapStateToProps = (state: any) => {
-//     return {
-//         items: state.unsplash.items
-//     }
-// };
-
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onSubmit: (searchInput: string) => {
-           dispatch(fetchItems( {searchInput, currentPage: 1}))
+        onSubmit: (searchInput: string, currentPage: number) => {
+           dispatch(fetchItems( {searchInput, currentPage}))
+        },
+        onChange: (filterInput: string) => {
+            dispatch(filterActionCreator(filterInput))
         }
     }
-}
+};
 
 const SearchFormWrapper = connect(
     null,
     mapDispatchToProps
 )(SearchForm);
 
-// export { SearchForm};
 export {SearchFormWrapper as SearchForm};

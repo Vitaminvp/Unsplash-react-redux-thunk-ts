@@ -1,7 +1,6 @@
 import axios from "axios";
 import { config } from "../configs/"
 import {SearchResponse} from "../types/API";
-
 const apiUrl = '/search/photos';
 
 const options =  axios.create({
@@ -9,11 +8,9 @@ const options =  axios.create({
     headers: {
         'Authorization': `Client-ID ${config.clientId}`
     }
-})
-
+});
 
 const  getImages = async (searchInput:string, currentPage: number) => {
-    //const { currentPage } = this.state;
     const axiosConfig = {
         params: {
             query: searchInput,
