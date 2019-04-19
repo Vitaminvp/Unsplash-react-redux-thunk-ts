@@ -26,6 +26,8 @@ interface Props {
     onChange: (filterInput: string, radioInput: string) => void;
     className: string;
     searchInput: string;
+    radioInput: string;
+
 }
 interface State {
     searchInput: string;
@@ -99,6 +101,7 @@ class SearchForm extends React.Component<Props, State>{
                 />
                 <div className={'search'}>
                     <Radio
+                        checked={ this.props.radioInput === Sort.ASC }
                         id={'desc'}
                         name={'radioInput'}
                         type = {InputTypes.RADIO}
@@ -106,6 +109,7 @@ class SearchForm extends React.Component<Props, State>{
                     />
                     <Radio
                         id={'asc'}
+                        checked={ this.props.radioInput === Sort.DESC }
                         name={'radioInput'}
                         type = {InputTypes.RADIO}
                         label = {<img src={asc} />}
@@ -118,6 +122,7 @@ class SearchForm extends React.Component<Props, State>{
 const mapStateToProps = (state: any) => {
     return {
         searchInput: state.unsplash.searchInput,
+        radioInput: state.unsplash.radioInput
     }
 };
 

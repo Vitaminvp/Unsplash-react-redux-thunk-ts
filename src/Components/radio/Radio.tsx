@@ -11,13 +11,13 @@ interface IProps {
     name?: string
     label?: any
     id?: string
-    checked?: boolean
+    checked: boolean
 }
 
 export const Radio: React.FunctionComponent<IProps> = ({ name, label, type, id, checked }) => {
     const classNames = classnames('input__native-group', 'input__native-radio', 'input__native-radio-inline')
     return <div className={classNames}>
-                <input id={id} type={type} name={name} />
+                <input id={id} type={type} name={name} checked={checked} />
                 <label htmlFor={id}>{label}</label>
         </div>
 };
