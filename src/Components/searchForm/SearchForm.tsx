@@ -9,9 +9,9 @@ import search from "../../img/search-img.png";
 import {Radio} from "../radio";
 import asc from "../../img/sort-amount-asc.svg";
 import desc from "../../img/sort-amount-desc.svg";
-import {fetchItems} from "../../actions/unsplash";
 import {filterActionCreator} from "../../actions/filter";
 import {connect} from "react-redux";
+import {fetchInitItems} from "../../actions/submit";
 
 
 export enum Sort {
@@ -24,15 +24,14 @@ interface Props {
     className: string;
 }
 interface State {
-    currentPage: number;
     searchInput: string;
     filterInput: string;
+    radioInput: string;
 }
 
 
 class SearchForm extends React.Component<Props, State>{
     state = {
-        currentPage: 1,
         searchInput: '',
         filterInput: '',
         radioInput: Sort.ASC
@@ -57,7 +56,6 @@ class SearchForm extends React.Component<Props, State>{
                     return acc;
                 }else{
                     return {...acc, [cur.name]: cur.value};
-
                 }
             }
             return acc;
@@ -73,8 +71,8 @@ class SearchForm extends React.Component<Props, State>{
 
     private onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const {searchInput, currentPage} = this.state;
-        this.props.onSubmit(searchInput, currentPage);
+        const {searchInput} = this.state;
+        this.props.onSubmit(searchInput, 1);
     };
 
     render(){
@@ -106,18 +104,16 @@ class SearchForm extends React.Component<Props, State>{
                         name={'radioInput'}
                         type = {InputTypes.RADIO}
                         label = {<img src={asc} />}
-
                     />
                 </div>
             </form>
-
     }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onSubmit: (searchInput: string, currentPage: number) => {
-           dispatch(fetchItems( {searchInput, currentPage}))
+           dispatch(fetchInitItems( {searchInput, currentPage}))
         },
         onChange: (filterInput: string, radioInput: string) => {
             dispatch(filterActionCreator({filterInput, radioInput}))

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import {Image} from '../../types/API';
 import './Grid.scss';
 import {GridItem} from "../gridItem";
@@ -38,6 +38,7 @@ class Grid extends React.PureComponent<Props, {}> {
         const sortedItems = radioInput === Sort.DESC ? filteredItems.sort((a:any, b:any):any => b.likes - a.likes ? -1 : 1): filteredItems;
 
         return <>
+            <Suspense fallback={<div>Loading...</div>}>
             <div className={'grid'}>
                 {
                     sortedItems.map(item => {
@@ -50,6 +51,7 @@ class Grid extends React.PureComponent<Props, {}> {
                     })
                 }
             </div>
+            </Suspense>
             {items.length > 0 && total > items.length?
                 <Button className="native-button" type={ButtonTypes.BUTTON} onClick={this.loadImages} >Show more {total ? `(${items.length} of ${total})` : ''}</Button>
                 : null

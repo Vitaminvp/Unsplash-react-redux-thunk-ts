@@ -22,6 +22,9 @@ const INITIAL_STATE={
 
 export const unsplash = (state: UnsplashState = INITIAL_STATE, action: Action<ActionTypes, any>) => {
     switch(action.type) {
+        case ActionTypes.SUBMIT:
+            return { ...state, ...action.payload };
+
         case ActionTypes.FETCH:
             const items = [...state.items, ...action.payload.items];
             return { ...state, ...action.payload, items };
