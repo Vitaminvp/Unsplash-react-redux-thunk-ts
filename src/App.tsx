@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import {Grid} from "./Components/grid";
 import {Nav} from "./Components/nav";
-import {Route, RouteChildrenProps, Router} from "react-router";
+import {Route, RouteChildrenProps} from "react-router";
 import {Link} from "react-router-dom";
 
 export enum ButtonTypes {
@@ -25,14 +25,12 @@ const routes = [
     Component: () => <h1>Some text</h1>
   },
   {
-    //title: 'Images',
     path: '/image/:id',
     Component: (props: RouteChildrenProps<{id:string}>) => <h1>Details {props.match!.params.id}</h1>
   }
 ];
 
 class App extends Component<{}, {}> {
-
 
   render() {
     return <div className={'app-wrapper'}>

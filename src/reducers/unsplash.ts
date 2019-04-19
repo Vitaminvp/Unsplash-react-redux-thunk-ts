@@ -17,7 +17,7 @@ const INITIAL_STATE={
     currentPage: 0,
     searchInput: "",
     filterInput: "",
-    radioInput: Sort.DESC
+    radioInput: Sort.ASC
 };
 
 export const unsplash = (state: UnsplashState = INITIAL_STATE, action: Action<ActionTypes, any>) => {
