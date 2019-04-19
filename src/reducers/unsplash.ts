@@ -2,8 +2,6 @@ import {Action} from "../types/action";
 import {ActionTypes} from "../actions/unsplash";
 import {Image} from "../types/API";
 
-
-
 interface UnsplashState {
     items: Array<Image>;
     total: number;
@@ -21,7 +19,6 @@ const INITIAL_STATE={
 };
 
 export const unsplash = (state: UnsplashState = INITIAL_STATE, action: Action<ActionTypes, any>) => {
-
     switch(action.type) {
         case ActionTypes.FETCH:
             const items = [...state.items, ...action.payload.items];
@@ -33,5 +30,4 @@ export const unsplash = (state: UnsplashState = INITIAL_STATE, action: Action<Ac
         default:
             return state;
     }
-
 };

@@ -1,6 +1,5 @@
 import getImages from "../api";
 
-
 export enum ActionTypes {
     FETCH = '@unsplash/fetch',
     FILTER = '@unsplash/filter'
