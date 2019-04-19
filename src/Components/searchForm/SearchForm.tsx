@@ -22,6 +22,7 @@ interface Props {
     onSubmit: (searchInput: string, currentPage: number) => void;
     onChange: (filterInput: string, radioInput: string) => void;
     className: string;
+    searchInput: string;
 }
 interface State {
     searchInput: string;
@@ -72,7 +73,9 @@ class SearchForm extends React.Component<Props, State>{
     private onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         const {searchInput} = this.state;
-        this.props.onSubmit(searchInput, 1);
+        if(this.props.searchInput !== searchInput){
+            this.props.onSubmit(searchInput, 1);
+        }
     };
 
     render(){
@@ -110,6 +113,12 @@ class SearchForm extends React.Component<Props, State>{
     }
 }
 
+const mapStateToProps = (state: any) => {
+    return {
+        searchInput: state.unsplash.searchInput,
+    }
+};
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onSubmit: (searchInput: string, currentPage: number) => {
@@ -122,7 +131,7 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const SearchFormWrapper = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(SearchForm);
 
