@@ -4,6 +4,7 @@ import "./Input.scss";
 
 export enum InputTypes {
     TEXT = 'text',
+    RADIO = 'radio',
     NUMBER = 'number',
     PASSWORD = 'password',
     PHONE = 'phone'

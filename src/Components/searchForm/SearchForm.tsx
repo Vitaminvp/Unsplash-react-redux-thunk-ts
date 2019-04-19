@@ -6,6 +6,9 @@ import classnames from "classnames";
 import {Button} from "../button";
 import {ButtonTypes} from "../../App";
 import search from "../../img/search-img.png";
+import {Radio} from "../radio";
+import asc from "../../img/sort-amount-asc.svg";
+import desc from "../../img/sort-amount-desc.svg";
 import {fetchItems} from "../../actions/unsplash";
 import {filterActionCreator} from "../../actions/filter";
 import {connect} from "react-redux";
@@ -81,6 +84,20 @@ class SearchForm extends React.Component<Props, State>{
                     type = {InputTypes.TEXT}
                     label = {'Filter'}
                 />
+                <div className={'search'}>
+                    <Radio
+                        id={'one'}
+                        name={'radioInput'}
+                        type = {InputTypes.RADIO}
+                        label = {<img src={desc} />}
+                    />
+                    <Radio
+                        id={'two'}
+                        name={'radioInput'}
+                        type = {InputTypes.RADIO}
+                        label = {<img src={asc} />}
+                    />
+                </div>
             </form>
 
     }

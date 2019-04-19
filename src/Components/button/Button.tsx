@@ -4,7 +4,6 @@ import classnames from "classnames";
 import {ButtonTypes} from "../../App";
 
 
-
 interface IProps extends  ButtonHTMLAttributes<HTMLButtonElement>{
     classNames?: string,
     type?: ButtonTypes

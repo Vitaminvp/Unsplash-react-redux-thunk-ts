@@ -1,3 +1,5 @@
+$accent-color: olivedrab;
+
 .input__native-group {
   position: relative;
   margin-bottom: 45px;
@@ -33,7 +35,7 @@
 .input__native-input:focus ~ .input__native-label {
   top:-20px;
   font-size:14px;
-  color:olivedrab;
+  color: $accent-color;
 }
 
 .input__native-bar {
@@ -48,7 +50,7 @@
     width:0;
     bottom:1px;
     position:absolute;
-    background:olivedrab;
+    background:$accent-color;
     transition:0.2s ease all;
   }
 
@@ -60,8 +62,6 @@
     right: 50%;
   }
 }
-
-
 
 .input__native-input:focus ~ .input__native-bar:before,
 .input__native-input:focus ~ .input__native-bar:after {

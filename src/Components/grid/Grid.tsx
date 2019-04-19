@@ -23,7 +23,6 @@ class Grid extends React.PureComponent<Props, {}> {
         this.props.onAddItems(this.props.searchInput, currentPage)
     };
 
-
     render() {
         const { items, total, filterInput} = this.props;
         const filteredItems = [...items].filter(item => {
