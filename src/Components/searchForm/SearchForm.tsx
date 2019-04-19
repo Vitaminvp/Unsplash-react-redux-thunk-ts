@@ -5,10 +5,13 @@ import "./SearchForm.scss";
 import classnames from "classnames";
 import {Button} from "../button";
 import {ButtonTypes} from "../../App";
+// @ts-ignore
 import search from "../../img/search-img.png";
-import {Radio} from "../radio";
+// @ts-ignore
 import asc from "../../img/sort-amount-asc.svg";
+// @ts-ignore
 import desc from "../../img/sort-amount-desc.svg";
+import {Radio} from "../radio";
 import {filterActionCreator} from "../../actions/filter";
 import {connect} from "react-redux";
 import {fetchInitItems} from "../../actions/submit";
@@ -100,7 +103,6 @@ class SearchForm extends React.Component<Props, State>{
                         name={'radioInput'}
                         type = {InputTypes.RADIO}
                         label = {<img src={desc} />}
-                        //checked = {true}
                     />
                     <Radio
                         id={'asc'}

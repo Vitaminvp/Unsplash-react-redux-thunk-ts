@@ -39,18 +39,18 @@ class Grid extends React.PureComponent<Props, {}> {
 
         return <>
             <Suspense fallback={<div>Loading...</div>}>
-            <div className={'grid'}>
-                {
-                    sortedItems.map(item => {
-                        const {alt_description, urls, likes, id} = item;
-                        return <GridItem className={'grid__item'}
-                                         key={id} id={id}
-                                         url={urls.small}
-                                         description={alt_description}
-                                         likes={likes}/>
-                    })
-                }
-            </div>
+                <div className={'grid'}>
+                    {
+                        sortedItems.map(item => {
+                            const {alt_description, urls, likes, id} = item;
+                            return <GridItem className={'grid__item'}
+                                             key={id} id={id}
+                                             url={urls.small}
+                                             description={alt_description}
+                                             likes={likes}/>
+                        })
+                    }
+                </div>
             </Suspense>
             {items.length > 0 && total > items.length?
                 <Button className="native-button" type={ButtonTypes.BUTTON} onClick={this.loadImages} >Show more {total ? `(${items.length} of ${total})` : ''}</Button>

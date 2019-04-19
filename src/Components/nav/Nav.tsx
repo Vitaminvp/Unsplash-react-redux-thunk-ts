@@ -1,10 +1,14 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import './Nav.scss';
 import { SearchForm } from "../searchForm";
 
-export const Nav: React.FunctionComponent<any> = () => {
+export const Nav: React.FunctionComponent<any> = ({children}) => {
 
     return <nav className={'nav'}>
+        <ul className={'nav-menu'}>
+            {React.Children.map<ReactNode, any>(children,(child:any) => <li>{React.cloneElement(child)}</li>)}
+        </ul>
+
             <div className={'nav__container'}>
                 <SearchForm  className='nav__search-form'/>
             </div>
