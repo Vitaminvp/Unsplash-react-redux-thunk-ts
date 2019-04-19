@@ -16,19 +16,19 @@ import {filterActionCreator} from "../../actions/filter";
 import {connect} from "react-redux";
 import {fetchInitItems} from "../../actions/submit";
 
-
 export enum Sort {
     ASC = 'asc',
     DESC = 'desc'
 }
+
 interface Props {
     onSubmit: (searchInput: string, currentPage: number) => void;
     onChange: (filterInput: string, radioInput: string) => void;
     className: string;
     searchInput: string;
     radioInput: string;
-
 }
+
 interface State {
     searchInput: string;
     filterInput: string;
@@ -42,6 +42,7 @@ class SearchForm extends React.Component<Props, State>{
         filterInput: '',
         radioInput: Sort.ASC
     };
+
     private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
         const { onChange } = this.props;
         const { searchInput, radioInput } = this.state;
@@ -53,6 +54,7 @@ class SearchForm extends React.Component<Props, State>{
             }
             return null;
         });
+
         const value = inputs.reduce((acc:object, cur:any) => {
             if(cur.name){
                 if(cur.name === 'radioInput'){
@@ -72,7 +74,6 @@ class SearchForm extends React.Component<Props, State>{
                 onChange(this.state.filterInput, radioInput);
             }
         });
-
     };
 
     private onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {

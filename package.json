@@ -2,6 +2,7 @@
   "name": "unsplash",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vitaminvp.github.io/Unsplash-react-redux-thunk-ts/",
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
