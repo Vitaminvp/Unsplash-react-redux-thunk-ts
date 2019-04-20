@@ -48,7 +48,7 @@ class App extends Component<{}, {}> {
       {
         routes.map(({path, exact, Component, title, props}) =>(
             <Route
-              key={title}
+              key={path}
               path={path}
               exact={exact}
               render={ (routeProps) => <Component {...props} {...routeProps} /> }

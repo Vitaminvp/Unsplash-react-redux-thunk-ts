@@ -49,7 +49,8 @@ class Grid extends React.PureComponent<Props, {}> {
                         sortedItems.map((item: { alt_description: any; urls: any; likes: any; id: any; }) => {
                             const {alt_description, urls, likes, id} = item;
                             return <GridItem className={'grid__item'}
-                                             key={id} id={id}
+                                             key={id}
+                                             id={id}
                                              url={urls.small}
                                              description={alt_description}
                                              likes={likes}/>
