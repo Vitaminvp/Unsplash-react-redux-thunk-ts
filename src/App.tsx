@@ -36,7 +36,7 @@ class App extends Component<{}, {}> {
     return <div className={'app-wrapper'}>
       <Nav>
         {
-          routes.map(route => <Link key={route.title} to={route.path}>{route.title}</Link>)
+          routes.map((route, i) => <Link key={i} to={route.path}>{route.title}</Link>)
         }
       </Nav>
       {
@@ -45,7 +45,7 @@ class App extends Component<{}, {}> {
               key={title}
               path={path}
               exact={exact}
-              render={ (routeProps) => <Component {...routeProps} /> }
+              render={ (routeProps) => <Component {...props} {...routeProps} /> }
             />
         ))
       }
