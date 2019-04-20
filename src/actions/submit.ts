@@ -1,4 +1,4 @@
-import getImages from "../api";
+import {getImages} from "../api";
 import {ActionTypes} from "./unsplash";
 
 

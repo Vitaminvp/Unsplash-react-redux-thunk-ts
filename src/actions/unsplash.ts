@@ -1,9 +1,10 @@
-import getImages from "../api";
+import {getImages} from "../api";
 
 export enum ActionTypes {
     FETCH = '@unsplash/fetch',
     FILTER = '@unsplash/filter',
-    SUBMIT = '@unsplash/submit'
+    SUBMIT = '@unsplash/submit',
+    IMAGE = '@image/fetsh'
 }
 
 export const fetchItems = (payload: {searchInput: string, currentPage: number}):any  => {

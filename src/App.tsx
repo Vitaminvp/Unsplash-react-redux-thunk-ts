@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import {Grid} from "./Components/grid";
+import { Image } from "./Components/image";
 import {Nav} from "./Components/nav";
 import {Route, RouteChildrenProps} from "react-router";
 import {Link} from "react-router-dom";
@@ -26,7 +27,8 @@ const routes = [
   },
   {
     path: '/image/:id',
-    Component: (props: RouteChildrenProps<{id:string}>) => <h1>Details {props.match!.params.id}</h1>
+    //Component: (props: RouteChildrenProps<{id:string}>) => <h1>Details {props.match!.params.id}</h1>
+    Component: (props: any) => <Image {...props}/>
   }
 ];
 
