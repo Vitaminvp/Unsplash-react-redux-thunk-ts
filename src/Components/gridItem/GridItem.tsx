@@ -1,8 +1,5 @@
 import React from "react";
-//import {SyntheticEvent} from "react";
 import "./GridItem.scss";
-
-
 
 interface IProps {
     url: string,

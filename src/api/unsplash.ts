@@ -2,10 +2,17 @@ import axios from "axios";
 import { config } from "../configs/"
 import {SearchResponse} from "../types/API";
 const apiUrl = '/search/photos';
-const apiUrlId = '/photos';
+import Unsplash, {toJson} from "unsplash-js";
 
 const options =  axios.create({
     baseURL: config.baseURL,
+    headers: {
+        'Authorization': `Client-ID ${config.clientId}`
+    }
+});
+
+const optionsId =  axios.create({
+    baseURL: config.baseURLId2,
     headers: {
         'Authorization': `Client-ID ${config.clientId}`
     }
@@ -23,13 +30,17 @@ export const  getImages = async (searchInput:string, currentPage: number) => {
     return { total, totalPages, items};
 
 };
+const unsplash = new Unsplash({
+    applicationId: `${config.clientId}`,
+    secret: `${config.secretKey}`
+});
 
-export  const  getImage = async (imageId:string) => {
-
-    const response =  await axios.get<SearchResponse>(`https://api.unsplash.com/photos/?id=${imageId}
-&client_id=995142b5e2f546f4eac828d832606dfba0beaef27d62d77a1ff8cce9ba2bacac`);
-    console.log("response.data13", response);
-    return response;
+export const getImage = async (imageId:string) => {
+    const result =   await unsplash.photos.getPhoto(imageId, 1920, 1080, [0, 0, 1920, 1080]);
+    const res = result.json();
+    console.log("res", res);
+    return res;
 
 };
+
 

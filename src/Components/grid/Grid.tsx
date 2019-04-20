@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {Button} from "../button";
 import {ButtonTypes} from "../../App";
 import {Sort} from "../searchForm";
+import {array} from "prop-types";
 
 interface Props {
     items: Array<Image>;
@@ -27,21 +28,25 @@ class Grid extends React.PureComponent<Props, {}> {
 
     render() {
         const { items, total, filterInput, radioInput} = this.props;
-        const filteredItems = [...items].filter(item => {
-            if (item.alt_description) {
-                const regex = new RegExp(filterInput, 'gi');
-                return item.alt_description.match(regex);
-            } else {
-                return true;
-            }
-        });
+        let filteredItems:any = [];
+        if(Array.isArray(items)){
+            filteredItems = [...items as any].filter(item => {
+                if (item.alt_description) {
+                    const regex = new RegExp(filterInput, 'gi');
+                    return item.alt_description.match(regex);
+                } else {
+                    return true;
+                }
+            });
+        }
+
         const sortedItems = radioInput === Sort.DESC ? filteredItems.sort((a:any, b:any):any => b.likes - a.likes ? -1 : 1): filteredItems;
 
         return <>
             <Suspense fallback={<div>Loading...</div>}>
                 <div className={'grid'}>
                     {
-                        sortedItems.map(item => {
+                        sortedItems.map((item: { alt_description: any; urls: any; likes: any; id: any; }) => {
                             const {alt_description, urls, likes, id} = item;
                             return <GridItem className={'grid__item'}
                                              key={id} id={id}
@@ -52,7 +57,7 @@ class Grid extends React.PureComponent<Props, {}> {
                     }
                 </div>
             </Suspense>
-            {items.length > 0 && total > items.length?
+            {items && items.length > 0 && total > items.length?
                 <Button className="native-button" type={ButtonTypes.BUTTON} onClick={this.loadImages} >Show more {total ? `(${items.length} of ${total})` : ''}</Button>
                 : null
             }

@@ -27,9 +27,13 @@ const routes = [
   },
   {
     path: '/image/:id',
-    //Component: (props: RouteChildrenProps<{id:string}>) => <h1>Details {props.match!.params.id}</h1>
     Component: (props: any) => <Image {...props}/>
-  }
+  },
+  {
+    title: 'Login',
+    path: '/login',
+    Component: () => <h1>Login component</h1>
+  },
 ];
 
 class App extends Component<{}, {}> {

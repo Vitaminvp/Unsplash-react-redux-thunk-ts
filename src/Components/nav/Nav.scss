@@ -7,7 +7,7 @@
 li, a {
   font-family: Arial, 'Lobster', cursive;
   text-transform: uppercase;
-  color: olivedrab;
+  color: #9b9999;
   font-weight: 700;
   line-height: 1.8;
   text-decoration: none;
@@ -19,11 +19,13 @@ li {
   text-indent: 56px;
 }
 a:focus {
-  color: #333;
+  color: olivedrab;
   background-color: #eee;
   transition: all .5s;
 }
-
+a.active {
+  color: olivedrab;
+}
 .nav-menu {
   position: absolute;
   display: flex;

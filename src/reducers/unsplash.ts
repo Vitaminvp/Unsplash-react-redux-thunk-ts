@@ -5,6 +5,7 @@ import {Sort} from "../Components/searchForm";
 
 interface UnsplashState {
     items: Array<Image>;
+    item: object;
     total: number;
     totalPages: number;
     currentPage: number;
@@ -12,6 +13,7 @@ interface UnsplashState {
 
 const INITIAL_STATE={
     items: [],
+    item: {},
     total: 0,
     totalPages: 0,
     currentPage: 0,
@@ -31,6 +33,9 @@ export const unsplash = (state: UnsplashState = INITIAL_STATE, action: Action<Ac
 
         case ActionTypes.FILTER:
             return { ...state, ...action.payload };
+
+        case ActionTypes.IMAGE:
+            return { ...state, item: action.payload };
 
         default:
             return state;
