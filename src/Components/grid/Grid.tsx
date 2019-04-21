@@ -6,7 +6,7 @@ import {fetchItems} from "../../actions/unsplash";
 import {connect} from "react-redux";
 import {Button} from "../button";
 import {ButtonTypes} from "../../App";
-import {Sort} from "../searchForm";
+import {SearchForm, Sort} from "../searchForm";
 import {array} from "prop-types";
 
 interface Props {
@@ -44,6 +44,9 @@ class Grid extends React.PureComponent<Props, {}> {
 
         return <>
             <Suspense fallback={<div>Loading...</div>}>
+                <div className={'nav__container'}>
+                    <SearchForm  className='nav__search-form'/>
+                </div>
                 <div className={'grid'}>
                     {
                         sortedItems.map((item: { alt_description: any; urls: any; likes: any; id: any; }) => {

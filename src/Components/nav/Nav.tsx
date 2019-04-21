@@ -12,8 +12,6 @@ export const Nav: React.FunctionComponent<any> = ({children}) => {
             )}
         </ul>
 
-            <div className={'nav__container'}>
-                <SearchForm  className='nav__search-form'/>
-            </div>
+
         </nav>;
 };
