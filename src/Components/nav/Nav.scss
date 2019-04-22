@@ -17,11 +17,9 @@ li {
   width: 230px;
   text-indent: 56px;
 }
-//a:focus {
-//  color: olivedrab;
-//  background-color: #eee;
-//  transition: all .5s;
-//}
+a:focus {
+  transition: all .5s;
+}
 a.active {
   color: olivedrab;
 }

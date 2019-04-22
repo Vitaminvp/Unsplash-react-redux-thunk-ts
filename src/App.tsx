@@ -47,8 +47,7 @@ class App extends Component<{}, {}> {
     return <div className={'app-wrapper'}>
       <Nav>
         {
-          routes.map((route, i) => <NavLink  exact key={i} to={route.path}>{route.title}</NavLink>)
-          // activeClassName={'active'}
+          routes.map((route, i) => <NavLink exact key={i} to={route.path}>{route.title}</NavLink>)
         }
       </Nav>
       <Switch>

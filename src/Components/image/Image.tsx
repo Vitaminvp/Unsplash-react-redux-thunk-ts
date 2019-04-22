@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import "./Image.scss";
 import {connect} from "react-redux";
 import {fetchImage} from "../../actions/image";
@@ -18,14 +18,16 @@ class Image extends React.Component<IProps, {}>{
     }
     render(){
         const {alt_description, user, urls} = this.props.item;
-        return <article >
-            <div className="info">
-                <h2>{name}</h2>
-                <h4>{alt_description}</h4>
-                <i>{user?user.name:null}</i>
-                <img src={urls?urls.regular:null} alt="" />
-            </div>
-        </article>
+        return <Suspense fallback={<div>Loading...</div>}>
+            <article >
+                <div className="info">
+                    <h2>{name}</h2>
+                    <h4>{alt_description}</h4>
+                    <i>{user?user.name:null}</i>
+                    <img src={urls?urls.regular:null} alt="" />
+                </div>
+            </article>
+        </Suspense>
     }
 }
 
