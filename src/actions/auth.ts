@@ -1,17 +1,31 @@
 import {Dispatch} from "redux";
-import {fetchToken, FetchtokenResponse} from "../api";
+import {fetchToken, } from "../api";
 import {Action} from "../types/action";
+import {FetchTokenResponse} from "../types/API";
+import {ActionTypes} from "./unsplash";
 
 export enum AUTH_ACTION_TYPES {
     TOKEN = '@auth/token'
 }
 
-const dispatchToken = (payload: FetchtokenResponse) => {
-    type: AUTH_ACTION_TYPES.TOKEN,
-    payload
-};
+export type AuthAction = Action<AUTH_ACTION_TYPES, {[key: string]: any}>;
 
-export const setToken = (code:string) => async (dispatch:Dispatch<any>)  => {
-    const responseData = await fetchToken(code);
-    dispatch(dispatchToken(responseData))
-};
+
+// const dispatchToken = (payload: FetchTokenResponse) => {
+//     type: AUTH_ACTION_TYPES.TOKEN,
+//     payload
+// };
+
+
+export const setToken = (code:string) => {
+    return async (dispatch:Dispatch<AuthAction>) => {
+        const responseData = await fetchToken(code);
+        return  dispatch({
+            type: AUTH_ACTION_TYPES.TOKEN,
+            payload: responseData
+            });
+        }
+    };
+
+
+

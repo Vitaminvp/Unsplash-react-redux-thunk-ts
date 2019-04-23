@@ -55,3 +55,12 @@ export interface SearchResponse{
     total_pages: number;
     results: Array<Image>
 }
+
+export interface FetchTokenResponse {
+
+    access_token: string,
+    token_type: string,
+    scope: string,
+    created_at: number
+
+}

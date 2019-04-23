@@ -1,16 +1,10 @@
 import axios from "axios";
 import {config} from "../configs";
+import {FetchTokenResponse} from "../types/API";
 
-export interface FetchtokenResponse {
 
-    access_token: string,
-    token_type: string,
-    scope: string,
-    created_at: number
 
-}
-
-export const  fetchToken = async (code:string): Promise<FetchtokenResponse> => {
+export const  fetchToken = async (code:string): Promise<FetchTokenResponse> => {
     const axiosConfig = {
         params: {
             client_id: config.clientId,
