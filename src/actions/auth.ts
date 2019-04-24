@@ -1,5 +1,5 @@
-import {Dispatch} from "redux";
-import {fetchToken, } from "../api";
+import { Dispatch} from "redux";
+import { fetchToken } from "../api";
 import {Action} from "../types/action";
 import {FetchTokenResponse} from "../types/API";
 import {ActionTypes} from "./unsplash";
@@ -25,7 +25,7 @@ export const setToken = (code:string) => {
             payload: responseData
             });
         }
-    };
+};
 
 
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import {Grid} from "./Components/grid";
 import { Image } from "./Components/image";
+import { Auth } from "./Components/auth";
 import {Nav} from "./Components/nav";
 import {Route, RouteChildrenProps, Switch} from "react-router";
 import {NavLink} from "react-router-dom";
@@ -27,6 +28,15 @@ const routes = [
     exact: false,
     path: '/about',
     Component: () => <h1>Some text</h1>
+  },
+  {
+    title: 'auth',
+    exact: false,
+    path: '/auth',
+    props: {
+      title: 'Auth'
+    },
+    Component: (props: RouteChildrenProps) => <Auth {...props}/>
   },
   {
     path: '/image/:id',

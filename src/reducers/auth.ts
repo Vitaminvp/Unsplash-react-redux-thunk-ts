@@ -10,7 +10,7 @@ interface authState {
 
 }
 
-const INITIAL_STATE={
+const INITIAL_STATE = {
     isAuthenticated: false,
     token: ''
 };
