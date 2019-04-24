@@ -26,6 +26,7 @@ interface Props {
     onChange: (filterInput: string, radioInput: string) => void;
     className: string;
     searchInput: string;
+    radioInput: string;
 }
 
 interface State {
@@ -42,8 +43,9 @@ class SearchForm extends React.Component<Props, State>{
         radioInput: Sort.ASC
     };
     componentDidMount(): void {
-        const {searchInput} = this.props;
+        const {searchInput, radioInput} = this.props;
         this.props.onSubmit(searchInput?searchInput:'girls', 1);
+        this.setState(state => ({...state, radioInput}), ()=>console.log(this.state));
     }
 
     private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
@@ -76,6 +78,7 @@ class SearchForm extends React.Component<Props, State>{
             if(nextSearchInput === searchInput){
                 onChange(this.state.filterInput, radioInput);
             }
+            console.log('this.state', this.state);
         });
     };
 
@@ -105,17 +108,18 @@ class SearchForm extends React.Component<Props, State>{
                 />
                 <div className={'search'}>
                     <Radio
-                        id={'desc'}
-                        name={'radioInput'}
-                        defaultChecked={true}
-                        type = {InputTypes.RADIO}
-                        label = {<img src={desc} />}
-                    />
-                    <Radio
                         id={'asc'}
                         name={'radioInput'}
+                        defaultChecked={this.state.radioInput === Sort.ASC}
                         type = {InputTypes.RADIO}
                         label = {<img src={asc} />}
+                    />
+                    <Radio
+                        id={'desc'}
+                        name={'radioInput'}
+                        defaultChecked={this.state.radioInput === Sort.DESC}
+                        type = {InputTypes.RADIO}
+                        label = {<img src={desc} />}
                     />
                 </div>
             </form>
@@ -124,7 +128,8 @@ class SearchForm extends React.Component<Props, State>{
 
 const mapStateToProps = (state: any) => {
     return {
-        searchInput: state.unsplash.searchInput
+        searchInput: state.unsplash.searchInput,
+        radioInput: state.unsplash.radioInput
     }
 };
 

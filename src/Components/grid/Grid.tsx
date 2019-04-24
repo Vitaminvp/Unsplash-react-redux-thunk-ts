@@ -40,7 +40,9 @@ class Grid extends React.PureComponent<Props, {}> {
             });
         }
 
-        const sortedItems = radioInput === Sort.DESC ? filteredItems.sort((a:any, b:any):any => b.likes - a.likes ? -1 : 1): filteredItems;
+        const sortedItems = radioInput === Sort.DESC
+            ? filteredItems.sort((a:any, b:any):any => b.alt_description - a.alt_description ? -1 : 1)
+            : filteredItems.sort((a:any, b:any):any => b.alt_description - a.alt_description ? 1 : -1);
 
         return <>
             <Suspense fallback={<div>Loading...</div>}>
