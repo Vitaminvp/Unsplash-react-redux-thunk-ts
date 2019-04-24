@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {RouteChildrenProps} from "react-router";
 import {Button} from "../button";
 import {ButtonTypes} from "../../App";
+import {config} from "../../configs";
 
 
 interface IProps extends RouteChildrenProps{
@@ -18,8 +19,13 @@ class Auth extends React.Component<IProps, any>{
         this.props.set_Token(code);
     }
 
+    private handleClick = () => {
+        console.log("Click");
+        window.location.href = `${config.oAuthAll}`;
+    };
+
     render(): React.ReactNode {
-        return <Button className="native-button" type={ButtonTypes.BUTTON} >LogIn</Button>;
+        return <Button className="native-button" type={ButtonTypes.BUTTON} onClick={this.handleClick} >LogIn</Button>;
     }
 };
 
