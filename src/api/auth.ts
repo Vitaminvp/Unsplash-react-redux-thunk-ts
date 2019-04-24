@@ -14,7 +14,9 @@ export const  fetchToken = async (code:string): Promise<FetchTokenResponse> => {
             grant_type: 'authorization_code'
         }
     };
-    const response =  await axios.post<any>(config.oAuthToken, axiosConfig);
+    const request = axios.create(axiosConfig);
+    const response =  await request.post<any>(config.oAuthToken);
+
     return  response.data;
 
 };

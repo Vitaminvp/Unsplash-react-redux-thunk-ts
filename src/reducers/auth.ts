@@ -18,7 +18,9 @@ const INITIAL_STATE = {
 export const auth = (state: authState = INITIAL_STATE, action: Action<AUTH_ACTION_TYPES, any>) => {
     switch(action.type) {
         case AUTH_ACTION_TYPES.TOKEN:
-            return {...state, token: action.payload};
+            const isAuthenticated = true;
+            const token = action.payload.access_token;
+            return {...state, token, isAuthenticated};
         default:
             return state;
     }
