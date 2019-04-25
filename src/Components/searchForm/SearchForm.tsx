@@ -40,7 +40,7 @@ class SearchForm extends React.Component<Props, State>{
     state = {
         searchInput: '',
         filterInput: '',
-        radioInput: Sort.ASC
+        radioInput: ''
     };
     componentDidMount(): void {
         const {searchInput, radioInput} = this.props;
@@ -118,7 +118,7 @@ class SearchForm extends React.Component<Props, State>{
                     <Radio
                         id={'desc'}
                         name={'radioInput'}
-                        //defaultChecked={this.props.radioInput === Sort.DESC}
+                        defaultChecked={this.props.radioInput === Sort.DESC}
                         type = {InputTypes.RADIO}
                         label = {<img src={desc} />}
                     />
