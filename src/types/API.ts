@@ -57,10 +57,9 @@ export interface SearchResponse{
 }
 
 export interface FetchTokenResponse {
-
-    access_token: string,
-    token_type: string,
-    scope: string,
+    access_token: string
+    token_type: string
+    refresh_token: string
+    scope: string
     created_at: number
-
 }

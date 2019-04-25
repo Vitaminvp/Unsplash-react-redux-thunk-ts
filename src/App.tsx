@@ -44,10 +44,10 @@ const routes = [
     Component: (props: any) => <Image {...props}/>
   },
   {
-    title: 'Login',
+    title: 'Contacts',
     exact: false,
-    path: '/login',
-    Component: () => <h1>Login component</h1>
+    path: '/contacts',
+    Component: () => <h1>Contacts component</h1>
   },
 ];
 
