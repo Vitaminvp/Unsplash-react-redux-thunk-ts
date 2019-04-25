@@ -7,6 +7,8 @@ import {Button} from "../button";
 import {ButtonTypes} from "../../App";
 import {config} from "../../configs";
 import "./Auth.scss";
+import {fetchCode} from "../../api";
+import {log} from "util";
 
 
 interface IProps extends RouteChildrenProps{
@@ -18,14 +20,15 @@ interface IProps extends RouteChildrenProps{
 class Auth extends React.Component<IProps, any>{
     componentDidMount(): void {
         const { search } = this.props.location;
-        const code = search.slice(search.indexOf('=') + 1);
+        let code = search.slice(search.indexOf('=') + 1);
+        //code = code.replace('#/', '');
         if(code){
             this.props.set_Token(code);
         }
     }
 
-    private handleClick = () => {
-        console.log("Click");
+    private handleClick = async () => {
+        //const code = await fetchCode();
         window.location.href = `${config.oAuthAll}`;
     };
 

@@ -20,16 +20,17 @@ export const  fetchToken = async (code:string): Promise<FetchTokenResponse> => {
     return  response.data;
 
 };
-// export const  fetchCode = (code:string) => {
-//     const axiosConfig = {
-//         params: {
-//             client_id: config.clientId,
-//             redirect_uri: config.localAuth,
-//             response_type: 'code',
-//             scope: 'public+read_user'
-//         }
-//     };
-//     const response =  axios.get(config.oAuth, axiosConfig);
-//     return  response;
-//
-// };
+export const  fetchCode = () => {
+    const axiosConfig = {
+        params: {
+            client_id: config.clientId,
+            redirect_uri: config.localAuth,
+            response_type: 'code',
+            scope: 'public+read_user'
+        }
+    };
+    const request = axios.create(axiosConfig);
+    const response =  request.get(config.oAuth);
+    return  response;
+
+};

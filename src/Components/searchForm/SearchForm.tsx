@@ -44,7 +44,7 @@ class SearchForm extends React.Component<Props, State>{
     };
     componentDidMount(): void {
         const {searchInput, radioInput} = this.props;
-        this.props.onSubmit(searchInput?searchInput:'girls', 1);
+        this.props.onSubmit(searchInput?searchInput:'cars', 1);
         this.setState(state => ({...state, radioInput}), () => console.log(this.state));
     }
 
@@ -75,10 +75,11 @@ class SearchForm extends React.Component<Props, State>{
         }, {});
 
         this.setState(state => ({...state, ...value}), () => {
-            if(nextSearchInput === searchInput){
-                onChange(this.state.filterInput, radioInput);
-            }
             console.log('this.state', this.state);
+            if(nextSearchInput === searchInput){
+                onChange(this.state.filterInput, this.state.radioInput);
+            }
+
         });
     };
 
@@ -110,14 +111,14 @@ class SearchForm extends React.Component<Props, State>{
                     <Radio
                         id={'asc'}
                         name={'radioInput'}
-                        defaultChecked={this.state.radioInput === Sort.ASC}
+                        defaultChecked={this.props.radioInput === Sort.ASC}
                         type = {InputTypes.RADIO}
                         label = {<img src={asc} />}
                     />
                     <Radio
                         id={'desc'}
                         name={'radioInput'}
-                        defaultChecked={this.state.radioInput === Sort.DESC}
+                        //defaultChecked={this.props.radioInput === Sort.DESC}
                         type = {InputTypes.RADIO}
                         label = {<img src={desc} />}
                     />
@@ -139,7 +140,7 @@ const mapDispatchToProps = (dispatch: any) => {
            dispatch(fetchInitItems( {searchInput, currentPage}))
         },
         onChange: (filterInput: string, radioInput: string) => {
-            dispatch(filterActionCreator({filterInput, radioInput}))
+            dispatch(filterActionCreator({filterInput: filterInput, radioInput: radioInput}))
         }
     }
 };
