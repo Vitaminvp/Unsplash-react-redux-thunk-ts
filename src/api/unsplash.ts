@@ -38,7 +38,6 @@ const unsplash = new Unsplash({
 export const getImage = async (imageId:string) => {
     const result =   await unsplash.photos.getPhoto(imageId, 1920, 1080, [0, 0, 1920, 1080]);
     const res = result.json();
-    console.log("res", res);
     return res;
 
 };

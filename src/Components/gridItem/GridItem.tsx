@@ -24,7 +24,7 @@ export class GridItem extends React.Component<IProps, IState>{
         };
 
         return <article className={classN}>
-            <a className="title" href={`/image/${id}`} style={titleStyle}>{ description }</a>
+            <a className="title" href={`#/image/${id}`} style={titleStyle}>{ description }</a>
             <div className="image">
                 <img src={url} alt="" />
             </div>

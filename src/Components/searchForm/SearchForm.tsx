@@ -50,7 +50,7 @@ class SearchForm extends React.Component<Props, State>{
 
     private onFormChange = (e: SyntheticEvent<HTMLFormElement>) => {
         const { onChange } = this.props;
-        const { searchInput, radioInput } = this.state;
+        const { searchInput } = this.state;
         const nextSearchInput = e.currentTarget['searchInput'].value;
 
         const inputs = Array.from(e.currentTarget.elements).filter((element:any) => {
@@ -60,7 +60,7 @@ class SearchForm extends React.Component<Props, State>{
             return null;
         });
 
-        const value = inputs.reduce((acc:object, cur:any) => {
+        const value:any = inputs.reduce((acc:object, cur:any) => {
             if(cur.name){
                 if(cur.name === 'radioInput'){
                     if(cur.checked === true){
@@ -75,11 +75,9 @@ class SearchForm extends React.Component<Props, State>{
         }, {});
 
         this.setState(state => ({...state, ...value}), () => {
-            console.log('this.state', this.state);
             if(nextSearchInput === searchInput){
                 onChange(this.state.filterInput, this.state.radioInput);
             }
-
         });
     };
 

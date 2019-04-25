@@ -8,7 +8,6 @@ import {ButtonTypes} from "../../App";
 import {config} from "../../configs";
 import "./Auth.scss";
 import {fetchCode} from "../../api";
-import {log} from "util";
 
 
 interface IProps extends RouteChildrenProps{
