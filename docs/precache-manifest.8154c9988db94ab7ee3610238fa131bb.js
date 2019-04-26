@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "b781ab1278ffdbaafb16",
+    "revision": "02e3cff804c86f4af920",
     "url": "/Unsplash-react-redux-thunk-ts/static/css/main.e886624e.chunk.css"
   },
   {
-    "revision": "b781ab1278ffdbaafb16",
-    "url": "/Unsplash-react-redux-thunk-ts/static/js/main.13c2f229.chunk.js"
+    "revision": "02e3cff804c86f4af920",
+    "url": "/Unsplash-react-redux-thunk-ts/static/js/main.5c5fcce6.chunk.js"
   },
   {
     "revision": "707b3d195d481e470622",
     "url": "/Unsplash-react-redux-thunk-ts/static/js/runtime~main.b69e3f4f.js"
   },
   {
-    "revision": "60c8baa46be17a4cb100",
-    "url": "/Unsplash-react-redux-thunk-ts/static/js/2.7ccdf0a5.chunk.js"
+    "revision": "00daddb8b707d4106dd6",
+    "url": "/Unsplash-react-redux-thunk-ts/static/js/2.9226a602.chunk.js"
   },
   {
     "revision": "0e5b33d6ece42f3bcf56dbb395a16fe7",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/Unsplash-react-redux-thunk-ts/static/media/sort-amount-desc.66ea0c11.svg"
   },
   {
-    "revision": "fe4c074c49f92678d96f656c7641049f",
+    "revision": "bd76c2c030d91606a88f024d48369e74",
     "url": "/Unsplash-react-redux-thunk-ts/index.html"
   }
 ];
