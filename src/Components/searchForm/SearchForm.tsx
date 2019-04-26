@@ -44,7 +44,8 @@ class SearchForm extends React.Component<Props, State>{
     };
     componentDidMount(): void {
         const {searchInput, radioInput} = this.props;
-        this.props.onSubmit(searchInput?searchInput:'cars', 1);
+        if(!searchInput)
+            this.props.onSubmit('cars', 1);
         this.setState(state => ({...state, radioInput}), () => console.log(this.state));
     }
 

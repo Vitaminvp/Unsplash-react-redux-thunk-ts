@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "02e3cff804c86f4af920",
-    "url": "/Unsplash-react-redux-thunk-ts/static/css/main.e886624e.chunk.css"
+    "revision": "f037fd0cdddf5f37dac6",
+    "url": "/Unsplash-react-redux-thunk-ts/static/css/main.c0ed2702.chunk.css"
   },
   {
-    "revision": "02e3cff804c86f4af920",
-    "url": "/Unsplash-react-redux-thunk-ts/static/js/main.5c5fcce6.chunk.js"
+    "revision": "f037fd0cdddf5f37dac6",
+    "url": "/Unsplash-react-redux-thunk-ts/static/js/main.2a10ead2.chunk.js"
   },
   {
     "revision": "707b3d195d481e470622",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/Unsplash-react-redux-thunk-ts/static/media/sort-amount-desc.66ea0c11.svg"
   },
   {
-    "revision": "bd76c2c030d91606a88f024d48369e74",
+    "revision": "c737769f0a378fbb196ab1f2534a3e1d",
     "url": "/Unsplash-react-redux-thunk-ts/index.html"
   }
 ];

@@ -1,7 +1,4 @@
 import {Action} from "../types/action";
-import {ActionTypes} from "../actions/unsplash";
-import {Image} from "../types/API";
-import {Sort} from "../Components/searchForm";
 import {AUTH_ACTION_TYPES} from "../actions/auth";
 
 interface authState {
