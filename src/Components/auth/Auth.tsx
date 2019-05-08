@@ -38,8 +38,8 @@ class Auth extends React.Component<IProps> {
         const {isAuthenticated, token} = this.props;
         return <>
             {
-                isAuthenticated ?
-                    <div><h2 className={'textCenter'}>You are logged</h2><h3>Token: {token}</h3></div>
+                isAuthenticated
+                    ? <div><h2 className={'textCenter'}>You are logged</h2><h3>Token: {token}</h3></div>
                     : <Button className="native-button" type={ButtonTypes.BUTTON}
                               onClick={this.handleClick}>LogIn</Button>
             }
