@@ -8,25 +8,25 @@ interface IProps {
     likes: number,
     link?: string,
     height?: number,
-    className?: string
+    classNames?: string
 }
 
 interface IState {
     value: string,
 }
 
-export class GridItem extends React.Component<IProps, IState>{
+export class GridItem extends React.Component<IProps, IState> {
 
-    render(){
-        const { url, likes, link, description, className: classN, height, id } = this.props;
+    render() {
+        const {url, likes, link, description, classNames, height, id} = this.props;
         const titleStyle = {
             height: `${height}px`,
         };
 
-        return <article className={classN}>
-            <a className="title" href={`#/image/${id}`} style={titleStyle}>{ description }</a>
+        return <article className={classNames}>
+            <a className="title" href={`#/image/${id}`} style={titleStyle}>{description}</a>
             <div className="image">
-                <img src={url} alt="" />
+                <img src={url} alt=""/>
             </div>
         </article>
     }

@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-import reducers  from "./reducers";
+import {Provider} from "react-redux";
+import {createStore, applyMiddleware, compose} from "redux";
+import reducers from "./reducers";
 import reduxThunk from "redux-thunk";
 import {HashRouter} from "react-router-dom";
 
@@ -22,6 +22,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <HashRouter>
-            <App />
+            <App/>
         </HashRouter>
     </Provider>, document.getElementById('root'));
+

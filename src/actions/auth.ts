@@ -9,7 +9,6 @@ export enum AUTH_ACTION_TYPES {
 
 export type AuthAction = Action<AUTH_ACTION_TYPES, { [key: string]: any }>;
 
-
 const dispatchToken = (payload: FetchTokenResponse) => ({
     type: AUTH_ACTION_TYPES.TOKEN,
     payload

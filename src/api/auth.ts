@@ -30,5 +30,5 @@ export const fetchCode = () => {
     const request = axios.create(axiosConfig);
     const response = request.get(config.oAuth);
     return response;
-
 };
+
