@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthAction, setToken } from "../../actions/auth";
+import { setToken } from "../../actions/auth";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { RouteChildrenProps } from "react-router";

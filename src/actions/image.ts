@@ -3,6 +3,7 @@ import { ActionTypes } from "./unsplash";
 import { Image } from "../types/API";
 import {ActionCreator, Dispatch} from "redux";
 import {Action} from "../types/action";
+import {ThunkAction, ThunkDispatch} from "redux-thunk";
 
 export const fetchImage = (payload: { imageId: string }):any  => {
   return async (dispatch: Dispatch) => {
