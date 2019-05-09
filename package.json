@@ -50,6 +50,7 @@
     "@types/react-router-dom": "^4.3.2",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
-    "@types/unsplash-js": "^5.0.0"
+    "@types/unsplash-js": "^5.0.0",
+    "prettier": "1.17.0"
   }
 }
