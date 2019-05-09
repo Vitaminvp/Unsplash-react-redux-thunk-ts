@@ -1,7 +1,7 @@
 import { Action } from "../types/action";
 import { AUTH_ACTION_TYPES } from "../actions/auth";
 
-export interface authState {
+export interface AuthState {
   isAuthenticated: boolean;
   token: string;
 }
@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 };
 
 export const auth = (
-  state: authState = INITIAL_STATE,
+  state: AuthState = INITIAL_STATE,
   action: Action<AUTH_ACTION_TYPES, any>
 ) => {
   switch (action.type) {

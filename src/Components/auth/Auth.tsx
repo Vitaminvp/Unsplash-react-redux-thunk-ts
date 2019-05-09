@@ -7,7 +7,7 @@ import { Button } from "../button";
 import { ButtonTypes } from "../../App";
 import { config } from "../../configs";
 import "./Auth.scss";
-import { authState } from "../../reducers/auth";
+import { AuthState } from "../../reducers/auth";
 
 interface IProps extends RouteChildrenProps {
   setToken(code: string): void;
@@ -16,7 +16,7 @@ interface IProps extends RouteChildrenProps {
 }
 
 interface State {
-  auth: authState;
+  auth: AuthState;
 }
 
 class Auth extends React.Component<IProps> {
@@ -56,15 +56,13 @@ class Auth extends React.Component<IProps> {
   }
 }
 
-const mapStateToProps = (state: State): authState => ({
+const mapStateToProps = (state: State): AuthState => ({
   isAuthenticated: state.auth.isAuthenticated,
   token: state.auth.token
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<AuthAction>) => {
-  return {
-    setToken: (code: string) => dispatch(setToken(code))
-  };
+const mapDispatchToProps = {
+    setToken
 };
 
 export default connect(

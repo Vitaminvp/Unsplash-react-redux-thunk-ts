@@ -1,4 +1,6 @@
 import { getImages } from "../api";
+import { Dispatch } from "redux";
+import {Image} from "../types/API";
 
 export enum ActionTypes {
   FETCH = "@unsplash/fetch",
@@ -11,7 +13,7 @@ export const fetchItems = (payload: {
   searchInput: string;
   currentPage: number;
 }): any => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch) => {
     const response = await getImages(payload.searchInput, payload.currentPage);
     dispatch({
       type: ActionTypes.FETCH,

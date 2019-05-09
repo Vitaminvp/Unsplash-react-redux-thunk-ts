@@ -20,7 +20,7 @@ interface Props {
   onItemsAdded(searchInput: string, currentPage: number): void;
 }
 
-class Grid extends React.PureComponent<Props, {}> {
+class Grid extends React.Component<Props> {
   private loadImages = () => {
     const currentPage = this.props.currentPage + 1;
     this.props.onItemsAdded(this.props.searchInput, currentPage);

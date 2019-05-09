@@ -85,9 +85,8 @@ class SearchForm extends React.Component<Props, State> {
       >
         <div className="search">
           <Input name="searchInput" type="text" label="Search" />
-          <Button type={ButtonTypes.SUBMIT} classNames={"btn-search"}>
-            {" "}
-            <img src={search} alt="Search" className={"icon-search"} />
+          <Button type={ButtonTypes.SUBMIT} classNames="btn-search">
+            <img src={search} alt="Search" className="icon-search" />
           </Button>
         </div>
         <Input name="filterInput" type="text" label="Filter" />
