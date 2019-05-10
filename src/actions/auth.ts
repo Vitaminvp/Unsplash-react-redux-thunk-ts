@@ -1,4 +1,4 @@
-import {Dispatch, Action, ActionCreator, AnyAction} from "redux";
+import { Dispatch, Action, ActionCreator, AnyAction } from "redux";
 import { fetchToken } from "../api";
 import { Action as ActionType } from "../types/action";
 import { FetchTokenResponse } from "../types/API";
@@ -16,7 +16,7 @@ const dispatchToken = (payload: FetchTokenResponse) => ({
 });
 
 
-export const setToken = (code: string): any => async (
+export const setToken = (code: string) => async (
   dispatch: Dispatch
 ) => {
   const responseData = await fetchToken(code);

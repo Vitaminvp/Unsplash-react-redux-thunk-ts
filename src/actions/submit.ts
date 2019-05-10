@@ -1,6 +1,7 @@
 import { getImages } from "../api";
 import { ActionTypes } from "./unsplash";
 import { Dispatch } from "redux";
+import { Image } from "../types/API";
 
 export const fetchInitItems = (payload: {
   searchInput: string;

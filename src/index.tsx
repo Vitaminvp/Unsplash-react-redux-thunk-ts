@@ -15,7 +15,7 @@ const store = createStore(
   reducers,
   compose(
     applyMiddleware(reduxThunk),
-    enhancer()
+    enhancer(),
   )
 );
 

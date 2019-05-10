@@ -1,6 +1,6 @@
 import { getImages } from "../api";
 import { Dispatch } from "redux";
-import {Image} from "../types/API";
+import { Image } from "../types/API";
 
 export enum ActionTypes {
   FETCH = "@unsplash/fetch",
